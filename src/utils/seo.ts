@@ -1,3 +1,5 @@
+import { SITE_ORIGIN } from './schema';
+
 export interface SEOProps {
   title: string;
   description: string;
@@ -19,7 +21,7 @@ export function generateSEOMeta(props: SEOProps) {
     noindex = false,
   } = props;
 
-  const siteUrl = 'https://hireritz.com'; // Update with actual domain
+  const siteUrl = SITE_ORIGIN;
   const fullTitle = `${title} | Hire Ritz - IT Consultancy`;
   const canonicalUrl = canonical ? `${siteUrl}${canonical}` : siteUrl;
   const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;

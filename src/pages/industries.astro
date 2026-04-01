@@ -4,19 +4,18 @@ import PageLayout from '../layouts/PageLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import fallbackIndustries from '../data/industries.json';
 import CTASection from '../components/CTASection.astro';
-import { generateBreadcrumbSchema } from '../utils/schema';
+import { buildBreadcrumbTrail } from '../utils/schema';
 const industriesData = fallbackIndustries;
 
 const seo = {
   title: 'Industries We Serve - IT Consultancy | Hire Ritz',
   description: 'Industry-focused technology and digital solutions for IT, Healthcare, BFSI, Retail, Manufacturing, and more. Deep domain expertise meets technical excellence.',
   keywords: 'IT consultancy industries, healthcare technology, BFSI digital, retail technology, manufacturing IT',
-  canonical: '/industries',
 };
 
-const breadcrumbSchema = generateBreadcrumbSchema([
-  { name: 'Home', url: 'https://hireritz.com/' },
-  { name: 'Industries', url: 'https://hireritz.com/industries' },
+const { schema: breadcrumbSchema, ui: breadcrumbUi, canonical } = buildBreadcrumbTrail([
+  { name: 'Home', path: '/' },
+  { name: 'Industries', path: '/industries' },
 ]);
 
 const whyIndustryMattersItems = [
@@ -31,7 +30,7 @@ const whyIndustryMattersItems = [
   title={seo.title}
   description={seo.description}
   keywords={seo.keywords}
-  canonical={seo.canonical}
+  canonical={canonical}
   schema={[breadcrumbSchema]}
 >
   <PageHero
@@ -39,7 +38,7 @@ const whyIndustryMattersItems = [
     lead="We combine deep industry knowledge with technology expertise to deliver solutions that fit your sector—from regulatory and operations to customer experience."
     image="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80"
     imageAlt="Office and industry"
-    breadcrumbItems={[{ label: 'Home', href: '/' }, { label: 'Industries' }]}
+    breadcrumbItems={breadcrumbUi}
   />
 
   <section class="section section-light">

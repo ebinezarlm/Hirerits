@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Footer from '../../components/Footer.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { getCollection } from 'astro:content';
-import { generateArticleSchema, generateBreadcrumbSchema } from '../../utils/schema';
+import { buildBreadcrumbTrail, generateArticleSchema, SITE_ORIGIN } from '../../utils/schema';
 
 export async function getStaticPaths() {
   const blogPosts = await getCollection('blog');
@@ -20,9 +20,16 @@ const seo = {
   title: post.data.title,
   description: post.data.description,
   keywords: post.data.tags.join(', '),
-  canonical: `/blog/${post.slug}`,
   ogImage: post.data.image,
 };
+
+const postPath = `/blog/${post.slug}`;
+
+const { schema: breadcrumbSchema, ui: breadcrumbUi, canonical } = buildBreadcrumbTrail([
+  { name: 'Home', path: '/' },
+  { name: 'Insights', path: '/blog' },
+  { name: post.data.title, path: postPath },
+]);
 
 const articleSchema = generateArticleSchema({
   headline: post.data.title,
@@ -31,21 +38,15 @@ const articleSchema = generateArticleSchema({
   datePublished: post.data.pubDate.toISOString(),
   dateModified: post.data.updatedDate?.toISOString() || post.data.pubDate.toISOString(),
   author: post.data.author,
-  url: `https://hireritz.com/blog/${post.slug}`,
+  url: `${SITE_ORIGIN}${canonical}`,
 });
-
-const breadcrumbSchema = generateBreadcrumbSchema([
-  { name: 'Home', url: 'https://hireritz.com/' },
-  { name: 'Insights', url: 'https://hireritz.com/blog' },
-  { name: post.data.title, url: `https://hireritz.com/blog/${post.slug}` },
-]);
 ---
 
 <BaseLayout
   title={seo.title}
   description={seo.description}
   keywords={seo.keywords}
-  canonical={seo.canonical}
+  canonical={canonical}
   ogImage={seo.ogImage}
   ogType="article"
   schema={[articleSchema, breadcrumbSchema]}
@@ -54,14 +55,7 @@ const breadcrumbSchema = generateBreadcrumbSchema([
     <article class="blog-post">
       <header class="blog-header">
         <div class="container">
-          <Breadcrumbs
-            variant="inverse"
-            items={[
-              { label: 'Home', href: '/' },
-              { label: 'Insights', href: '/blog' },
-              { label: post.data.title },
-            ]}
-          />
+          <Breadcrumbs variant="inverse" items={breadcrumbUi} />
           
           <h1>{post.data.title}</h1>
           

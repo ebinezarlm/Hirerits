@@ -2,18 +2,17 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import CTASection from '../components/CTASection.astro';
-import { generateBreadcrumbSchema } from '../utils/schema';
+import { buildBreadcrumbTrail } from '../utils/schema';
 
 const seo = {
   title: 'Job Seekers - Explore Global Career Opportunities',
   description: 'Submit your resume and explore global career opportunities across India, North America, Europe, Middle East, and APAC. Mid-level to leadership roles.',
   keywords: 'job opportunities, career opportunities, submit resume, global jobs, job search',
-  canonical: '/job-seekers',
 };
 
-const breadcrumbSchema = generateBreadcrumbSchema([
-  { name: 'Home', url: 'https://hireritz.com/' },
-  { name: 'Job Seekers', url: 'https://hireritz.com/job-seekers' },
+const { schema: breadcrumbSchema, ui: breadcrumbUi, canonical } = buildBreadcrumbTrail([
+  { name: 'Home', path: '/' },
+  { name: 'Job Seekers', path: '/job-seekers' },
 ]);
 ---
 
@@ -21,7 +20,7 @@ const breadcrumbSchema = generateBreadcrumbSchema([
   title={seo.title}
   description={seo.description}
   keywords={seo.keywords}
-  canonical={seo.canonical}
+  canonical={canonical}
   schema={[breadcrumbSchema]}
 >
   <PageHero
@@ -29,7 +28,7 @@ const breadcrumbSchema = generateBreadcrumbSchema([
     lead="Submit your resume and connect with opportunities across India, North America, Europe, Middle East, and APAC. From mid-level positions to leadership roles."
     image="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80"
     imageAlt="Career and growth"
-    breadcrumbItems={[{ label: 'Home', href: '/' }, { label: 'Job Seekers' }]}
+    breadcrumbItems={breadcrumbUi}
   />
 
   <section class="section section-light">

@@ -102,6 +102,48 @@ export function generateBreadcrumbSchema(items: Array<{ name: string; url: strin
   };
 }
 
+export const SITE_ORIGIN = 'https://hireritz.com';
+
+export type BreadcrumbUiItem = { label: string; href?: string };
+
+function normalizePathname(path: string): string {
+  if (path === '/') return '/';
+  return path.startsWith('/') ? path : `/${path}`;
+}
+
+/**
+ * Single source for JSON-LD, visible breadcrumbs, and SEO pathname: pass pathnames (e.g. `/`, `/contact`).
+ * Last segment is the current page (no `href` in UI); `canonical` is that pathname for `<link rel="canonical">`.
+ */
+export function buildBreadcrumbTrail(
+  crumbs: Array<{ name: string; path: string }>,
+): { schema: object; ui: BreadcrumbUiItem[]; canonical: string } {
+  if (crumbs.length === 0) {
+    throw new Error('buildBreadcrumbTrail requires at least one crumb');
+  }
+
+  const schemaItems = crumbs.map((c) => {
+    const path = normalizePathname(c.path);
+    const url = path === '/' ? `${SITE_ORIGIN}/` : `${SITE_ORIGIN}${path}`;
+    return { name: c.name, url };
+  });
+
+  const ui: BreadcrumbUiItem[] = crumbs.map((c, i) => {
+    if (i === crumbs.length - 1) {
+      return { label: c.name };
+    }
+    return { label: c.name, href: normalizePathname(c.path) };
+  });
+
+  const canonical = normalizePathname(crumbs[crumbs.length - 1].path);
+
+  return {
+    schema: generateBreadcrumbSchema(schemaItems),
+    ui,
+    canonical,
+  };
+}
+
 export function generateArticleSchema(props: {
   headline: string;
   description: string;

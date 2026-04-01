@@ -1,18 +1,17 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
-import { generateBreadcrumbSchema } from '../utils/schema';
+import { buildBreadcrumbTrail } from '../utils/schema';
 
 const seo = {
   title: 'Privacy Policy - Hire Ritz',
   description: 'Privacy policy and data protection practices for Hire Ritz. GDPR-compliant privacy and cookie policy.',
   keywords: 'privacy policy, data protection, GDPR, cookie policy',
-  canonical: '/privacy-policy',
 };
 
-const breadcrumbSchema = generateBreadcrumbSchema([
-  { name: 'Home', url: 'https://hireritz.com/' },
-  { name: 'Privacy Policy', url: 'https://hireritz.com/privacy-policy' },
+const { schema: breadcrumbSchema, ui: breadcrumbUi, canonical } = buildBreadcrumbTrail([
+  { name: 'Home', path: '/' },
+  { name: 'Privacy Policy', path: '/privacy-policy' },
 ]);
 ---
 
@@ -20,12 +19,12 @@ const breadcrumbSchema = generateBreadcrumbSchema([
   title={seo.title}
   description={seo.description}
   keywords={seo.keywords}
-  canonical={seo.canonical}
+  canonical={canonical}
   schema={[breadcrumbSchema]}
 >
   <section class="section section-light">
     <div class="container">
-      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Privacy Policy' }]} />
+      <Breadcrumbs items={breadcrumbUi} />
       <h1>Privacy Policy</h1>
       <p class="page-subtitle">
         Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
