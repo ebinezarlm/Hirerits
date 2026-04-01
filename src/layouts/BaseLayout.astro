@@ -4,6 +4,7 @@ import { generateOrganizationSchema, generateWebsiteSchema } from '../utils/sche
 import CookieConsent from '../components/CookieConsent.astro';
 import Header from '../components/Header.astro';
 import '../styles/global.css';
+import '../styles/compatibility.css';
 import '../styles/utilities.css';
 
 interface Props {
@@ -42,7 +43,7 @@ const siteUrl = 'https://hireritz.com';
 const organizationSchema = generateOrganizationSchema({
   name: 'Hire Ritz',
   url: siteUrl,
-  logo: `${siteUrl}/images/logo.png`,
+  logo: `${siteUrl}/images/hire-ritz-logo.png`,
   contactPoint: {
     contactType: 'Customer Service',
     email: 'contact@hireritz.com',
@@ -73,6 +74,7 @@ const allSchemas = [organizationSchema, websiteSchema, ...schema];
     
     <!-- Canonical URL -->
     <link rel="canonical" href={seo.canonical} />
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap-index.xml" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={seo.ogType} />
@@ -99,7 +101,7 @@ const allSchemas = [organizationSchema, websiteSchema, ...schema];
     <meta name="msapplication-TileColor" content="#0f766e" />
     
     <!-- Favicon & app icons -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" href="/images/hire-ritz-logo.png" type="image/png" />
     <link rel="apple-touch-icon" href="/images/hire-ritz-logo.png" />
     
     <!-- Preload Critical Fonts -->

@@ -365,7 +365,7 @@ const industryEngagementHighlights = [
       }}
       tertiaryCTA={{
         text: 'Submit Your Resume',
-        href: '/job-seekers',
+        href: '#careers-section',
       }}
     />
   </section>
@@ -387,7 +387,7 @@ const industryEngagementHighlights = [
           <h3>What We Do</h3>
           <p class="section-lead">End-to-end technology capabilities to transform and run your business.</p>
         </div>
-        <div class="services-grid">
+        <div class="services-grid" id="services">
           {aboutWhatWeDoItems.map((item) => (
             <article class="service-card">
               <div class="service-card-image-wrap">
@@ -817,6 +817,42 @@ const industryEngagementHighlights = [
     </div>
   </section>
 
+  <section id="careers-section" class="scroll-section careers-strip-section">
+    <div class="section-content">
+      <div class="about-strip section-light">
+        <div class="section-header">
+          <p class="about-kicker">Careers</p>
+          <h2>Advance your career with Hire Ritz</h2>
+          <p class="section-lead">
+            Submit your CV, explore global opportunities, and work with consultants who understand your goals—from
+            mid-level roles to executive leadership.
+          </p>
+        </div>
+
+        <div class="careers-hero-visual">
+          <Picture
+            src={executiveProcessImage}
+            formats={['avif', 'webp', 'jpeg']}
+            widths={[720, 1080, 1440]}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 92vw, 980px"
+            alt="Professionals collaborating on career growth and hiring"
+            loading="lazy"
+            class="media"
+          />
+        </div>
+
+        <p class="careers-intro-block">
+          We recruit across India, North America, Europe, the Middle East, and APAC. Tell us about your background and
+          we will match you to relevant mandates.
+        </p>
+
+        <div class="about-action">
+          <a href="/careers" class="btn btn-primary">Careers &amp; submit your CV</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="contact-section" class="scroll-section contact-strip-section">
     <div class="section-content">
       <div class="about-strip section-light">
@@ -894,6 +930,7 @@ const industryEngagementHighlights = [
   .industries-section,
   .testimonials-strip-section,
   .faq-strip-section,
+  .careers-strip-section,
   .contact-strip-section {
     min-height: auto;
     padding-top: var(--spacing-lg);
@@ -905,6 +942,7 @@ const industryEngagementHighlights = [
   .industries-intro-block,
   .testimonials-intro-block,
   .faq-intro-block,
+  .careers-intro-block,
   .contact-intro-block {
     text-align: center;
     max-width: 42rem;
@@ -919,225 +957,10 @@ const industryEngagementHighlights = [
   .industries-section .about-strip .industries-hero-visual,
   .testimonials-strip-section .about-strip .testimonials-hero-visual,
   .faq-strip-section .about-strip .faq-hero-visual,
+  .careers-strip-section .about-strip .careers-hero-visual,
   .contact-strip-section .about-strip .contact-hero-visual {
     margin-top: 0;
     margin-bottom: var(--spacing-xl);
-  }
-
-  .exec-role-badge {
-    min-width: 2.25rem;
-    padding: 0 var(--spacing-sm);
-    font-size: var(--font-size-xs);
-    letter-spacing: 0.06em;
-  }
-
-  .about-strip {
-    background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-2xl);
-    box-shadow: var(--shadow-md);
-    padding: var(--spacing-2xl);
-  }
-
-  .about-strip .section-header {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: var(--spacing-xl);
-  }
-
-  .about-strip .section-header.about-inner-header {
-    margin-top: var(--spacing-2xl);
-    margin-bottom: var(--spacing-lg);
-  }
-
-  .about-strip .section-header.about-inner-header h3 {
-    margin-top: 0;
-  }
-
-  /* Grids follow headers — avoid doubling header margin + grid margin */
-  .about-strip .services-grid,
-  .about-diff-grid,
-  .about-engagement-grid {
-    margin-top: 0;
-    width: 100%;
-  }
-
-  .about-diff-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-    gap: var(--spacing-xl);
-  }
-
-  .about-diff-card {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    border-radius: var(--radius-xl);
-    border: 1px solid var(--color-border);
-    background: linear-gradient(180deg, var(--color-surface-elevated) 0%, var(--color-surface) 100%);
-    box-shadow: var(--shadow-sm);
-    transition: box-shadow var(--transition-base), transform var(--transition-base), border-color var(--transition-base);
-  }
-
-  .about-diff-card:hover {
-    box-shadow: var(--shadow-lg);
-    border-color: var(--color-primary-light);
-    transform: translateY(-4px);
-  }
-
-  .about-diff-card-image-wrap {
-    aspect-ratio: 16 / 10;
-    overflow: hidden;
-    margin: 0;
-    background: var(--color-bg-light);
-  }
-
-  .about-diff-card-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform var(--transition-slow);
-  }
-
-  .about-diff-card:hover .about-diff-card-image {
-    transform: scale(1.04);
-  }
-
-  .about-diff-card-body {
-    padding: var(--spacing-xl) var(--spacing-2xl) var(--spacing-2xl);
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .about-diff-card-title {
-    margin: 0 0 var(--spacing-sm);
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-primary);
-    line-height: 1.3;
-  }
-
-  .about-diff-card-body p {
-    margin: 0;
-    font-size: var(--font-size-sm);
-    line-height: var(--line-height-relaxed);
-    color: var(--color-text-light);
-  }
-
-  .about-engagement-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
-    gap: var(--spacing-xl);
-    align-items: stretch;
-  }
-
-  .about-engagement-card {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    border-radius: var(--radius-xl);
-    border: 1px solid var(--color-border);
-    background: var(--color-bg);
-    box-shadow: var(--shadow-sm);
-    transition: box-shadow var(--transition-base), transform var(--transition-base);
-  }
-
-  .about-engagement-card:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-3px);
-  }
-
-  .about-engagement-card-visual {
-    position: relative;
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    background: linear-gradient(145deg, #0f4c81 0%, #1a6cb8 50%, #0d3d5c 100%);
-  }
-
-  .about-engagement-card-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    opacity: 0.92;
-    transition: opacity var(--transition-base), transform var(--transition-slow);
-  }
-
-  .about-engagement-card:hover .about-engagement-card-image {
-    opacity: 1;
-    transform: scale(1.03);
-  }
-
-  .about-step-badge {
-    position: absolute;
-    top: var(--spacing-md);
-    left: var(--spacing-md);
-    z-index: 2;
-    min-width: 2.75rem;
-    height: 2.75rem;
-    padding: 0 var(--spacing-sm);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: var(--radius-lg);
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-bold);
-    letter-spacing: 0.02em;
-    color: white;
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
-    box-shadow: var(--shadow-md);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-  }
-
-  .about-engagement-card-body {
-    padding: var(--spacing-lg) var(--spacing-xl) var(--spacing-xl);
-    flex: 1;
-  }
-
-  .about-engagement-card-title {
-    margin: 0 0 var(--spacing-sm);
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-primary);
-  }
-
-  .about-engagement-card-body p {
-    margin: 0;
-    font-size: var(--font-size-sm);
-    line-height: var(--line-height-relaxed);
-    color: var(--color-text-light);
-  }
-
-  .about-inner-header {
-    text-align: center;
-  }
-
-  .about-action {
-    margin-top: var(--spacing-xl);
-    text-align: center;
-  }
-
-  .about-kicker {
-    margin: 0 0 var(--spacing-sm);
-    font-size: var(--font-size-xs);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--color-primary);
-    font-weight: var(--font-weight-semibold);
-  }
-
-  .about-strip h2 {
-    margin-top: 0;
-    margin-bottom: var(--spacing-md);
-  }
-
-  /* Intro / header copy only — do not override .service-card p / .content-card p */
-  .about-strip > .section-header:first-child .section-lead {
-    max-width: 40rem;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   #testimonials-section {
@@ -1167,20 +990,6 @@ const industryEngagementHighlights = [
     max-width: 100% !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
-  }
-  
-  .section-content {
-    max-width: var(--container-max-width);
-    margin: 0 auto;
-    padding: 0 var(--spacing-2xl);
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  @media (max-width: 1024px) {
-    .section-content {
-      padding: 0 var(--spacing-xl);
-    }
   }
   
   .page-subtitle {
@@ -1222,6 +1031,7 @@ const industryEngagementHighlights = [
   .industries-hero-visual,
   .testimonials-hero-visual,
   .faq-hero-visual,
+  .careers-hero-visual,
   .contact-hero-visual {
     border-radius: var(--radius-2xl);
     overflow: hidden;
@@ -1234,6 +1044,7 @@ const industryEngagementHighlights = [
   .industries-hero-visual img,
   .testimonials-hero-visual :global(img),
   .faq-hero-visual :global(img),
+  .careers-hero-visual :global(img),
   .contact-hero-visual :global(img) {
     width: 100%;
     height: 380px;
@@ -1260,10 +1071,6 @@ const industryEngagementHighlights = [
       padding-top: var(--spacing-sm);
     }
 
-    .about-strip {
-      padding: var(--spacing-xl);
-    }
-
     #testimonials-section {
       padding-top: var(--spacing-xs);
     }
@@ -1273,30 +1080,11 @@ const industryEngagementHighlights = [
     .industries-hero-visual img,
     .testimonials-hero-visual :global(img),
     .faq-hero-visual :global(img),
+    .careers-hero-visual :global(img),
     .contact-hero-visual :global(img) {
       height: 240px;
     }
 
-    .section-content {
-      padding-left: max(var(--spacing-md), env(safe-area-inset-left));
-      padding-right: max(var(--spacing-md), env(safe-area-inset-right));
-    }
-
-    .about-action .btn {
-      width: 100%;
-      max-width: 22rem;
-      box-sizing: border-box;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .about-strip {
-      padding: var(--spacing-lg);
-    }
-
-    .about-diff-card-body {
-      padding: var(--spacing-lg);
-    }
   }
 
 </style>

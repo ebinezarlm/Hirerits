@@ -10,12 +10,14 @@ const navItems = isHomePage
       { href: '#industries-section', label: 'Industries', sectionId: 'industries-section' },
       { href: '#testimonials-section', label: 'Testimonials', sectionId: 'testimonials-section' },
       { href: '#faq-section', label: 'FAQ', sectionId: 'faq-section' },
+      { href: '#careers-section', label: 'Careers', sectionId: 'careers-section' },
       { href: '#contact-section', label: 'Contact', sectionId: 'contact-section' },
     ]
   : [
       { href: '/', label: 'Home' },
       { href: '/#about-section', label: 'About' },
       { href: '/#industries-section', label: 'Industries' },
+      { href: '/careers', label: 'Careers' },
       { href: '/contact', label: 'Contact' },
     ];
 
@@ -36,13 +38,13 @@ function isActive(href: string): boolean {
       <div class="nav-wrapper">
         <a href="/" class="logo" aria-label="Hire Ritz Home">
           <img
+            class="logo-mark"
             src="/images/hire-ritz-logo.png"
             alt=""
-            class="logo-mark"
-            width="1024"
-            height="1024"
-            loading="eager"
+            width="200"
+            height="220"
             decoding="async"
+            fetchpriority="high"
           />
         </a>
         
@@ -235,14 +237,15 @@ function isActive(href: string): boolean {
     opacity: 0.92;
   }
 
-  /* Source art is 1024² with padding; slightly larger display so the mark reads clearly */
+  /* Portrait brand mark (graphic + wordmark) */
   .logo-mark {
     display: block;
-    height: 88px;
+    height: 72px;
     width: auto;
-    max-height: 88px;
-    max-width: min(440px, 88vw);
+    max-height: 72px;
+    max-width: min(200px, 42vw);
     object-fit: contain;
+    object-position: left center;
     flex: 0 0 auto;
   }
   
@@ -370,9 +373,9 @@ function isActive(href: string): boolean {
     }
 
     .logo-mark {
-      height: 78px;
-      max-height: 78px;
-      max-width: min(400px, 82vw);
+      height: 64px;
+      max-height: 64px;
+      max-width: min(180px, 48vw);
     }
   }
 
@@ -382,9 +385,9 @@ function isActive(href: string): boolean {
     }
 
     .logo-mark {
-      height: 66px;
-      max-height: 66px;
-      max-width: min(340px, 78vw);
+      height: 56px;
+      max-height: 56px;
+      max-width: min(160px, 52vw);
     }
   }
 

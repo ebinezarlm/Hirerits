@@ -75,7 +75,22 @@ function validateField(field) {
   clearFieldError(field);
   
   // Required validation
-  if (required && !value) {
+  if (type === 'file') {
+    if (required && (!field.files || field.files.length === 0)) {
+      showFieldError(field, 'Please upload your CV or resume');
+      return false;
+    }
+    if (field.files && field.files.length > 0) {
+      const maxBytes = field.getAttribute('data-max-bytes');
+      if (maxBytes) {
+        const max = parseInt(maxBytes, 10);
+        if (field.files[0].size > max) {
+          showFieldError(field, 'File must be 5MB or smaller');
+          return false;
+        }
+      }
+    }
+  } else if (required && !value) {
     showFieldError(field, 'This field is required');
     return false;
   }

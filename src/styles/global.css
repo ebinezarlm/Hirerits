@@ -1,4 +1,5 @@
 @import './variables.css';
+@import './about-strip.css';
 
 /* Reset & Base Styles */
 *,
@@ -249,11 +250,12 @@ button:focus-visible {
 .service-card:hover .service-card-image {
   transform: scale(1.03);
 }
-.service-card:has(.service-card-image-wrap) h3 {
+/* Sibling selectors work without :has() (older Safari / embedded browsers) */
+.service-card .service-card-image-wrap + h3 {
   padding: var(--spacing-xl) var(--spacing-2xl) 0;
   margin-bottom: var(--spacing-sm);
 }
-.service-card:has(.service-card-image-wrap) p {
+.service-card .service-card-image-wrap ~ p {
   padding: 0 var(--spacing-2xl) var(--spacing-2xl);
 }
 .service-card:hover,

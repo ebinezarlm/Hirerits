@@ -1,0 +1,43 @@
+/**
+ * Cross-browser & device baselines (mobile, tablet, desktop).
+ * Keeps layouts usable where cutting-edge CSS is unavailable or should be toned down.
+ */
+
+/* Respect system “reduce motion” */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Form controls inherit typography (older WebKit / Edge legacy) */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  line-height: inherit;
+}
+
+/* Avoid iOS zooming 16px inputs (keep base 16px in variables; this is a safety net) */
+@media (max-width: 1024px) {
+  input[type='text'],
+  input[type='email'],
+  input[type='tel'],
+  input[type='url'],
+  input[type='search'],
+  input[type='password'],
+  input[type='number'],
+  select,
+  textarea {
+    font-size: max(16px, var(--font-size-base, 1rem));
+  }
+}
+
+/* Touch: reduce accidental double-tap delay on primary actions */
+.btn,
+.mobile-menu-toggle,
+.direction-btn,
+.cv-dropzone__hit {
+  touch-action: manipulation;
+}

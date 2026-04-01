@@ -20,6 +20,16 @@
   },
   "devDependencies": {
     "@types/node": "^20.14.0",
+    "autoprefixer": "^10.4.27",
+    "postcss": "^8.5.8",
     "typescript": "^5.5.0"
-  }
+  },
+  "browserslist": [
+    "> 0.5%",
+    "last 2 versions",
+    "Firefox ESR",
+    "not dead",
+    "iOS >= 12",
+    "Safari >= 12"
+  ]
 }

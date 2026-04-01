@@ -15,7 +15,7 @@ export function generateSEOMeta(props: SEOProps) {
     title,
     description,
     canonical,
-    ogImage = '/images/og-default.jpg',
+    ogImage = 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
     ogType = 'website',
     keywords,
     noindex = false,

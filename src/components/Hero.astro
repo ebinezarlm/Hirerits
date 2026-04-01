@@ -27,7 +27,7 @@ const {
 } = Astro.props;
 ---
 
-<section class="hero" id="hero">
+<section class:list={['hero', backgroundImage && 'hero--with-image']} id="hero">
   <div class="hero-background">
     {backgroundImage && (
       <img
@@ -113,7 +113,7 @@ const {
       linear-gradient(135deg, #020617 0%, #0f4c81 48%, #102a43 100%);
   }
   
-  .hero:has(.hero-image) .hero-overlay {
+  .hero--with-image .hero-overlay {
     background: linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(13, 148, 136, 0.75) 50%, rgba(19, 78, 74, 0.85) 100%);
   }
   

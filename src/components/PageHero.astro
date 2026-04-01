@@ -16,7 +16,7 @@ const { title, lead, image, imageAlt = '', breadcrumbItems } = Astro.props;
 <section class="page-hero-wrap">
   <div class="container">
     {breadcrumbItems && breadcrumbItems.length > 0 && <Breadcrumbs items={breadcrumbItems} />}
-    <div class="page-hero-inner">
+    <div class:list={['page-hero-inner', image && 'page-hero-inner--with-image']}>
       {image && (
         <div class="page-hero-image-wrap">
           <img
@@ -60,10 +60,10 @@ const { title, lead, image, imageAlt = '', breadcrumbItems } = Astro.props;
       grid-template-columns: 1fr 1.2fr;
       gap: var(--spacing-4xl);
     }
-    .page-hero-inner:has(.page-hero-image-wrap) .page-hero {
+    .page-hero-inner--with-image .page-hero {
       order: 2;
     }
-    .page-hero-inner:has(.page-hero-image-wrap) .page-hero-image-wrap {
+    .page-hero-inner--with-image .page-hero-image-wrap {
       order: 1;
     }
   }

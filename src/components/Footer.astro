@@ -17,7 +17,7 @@ const companyLinks = [
   { href: '/#about-section', label: 'About' },
   { href: '/contact', label: 'Contact' },
   { href: '/employers', label: 'For Employers' },
-  { href: '/job-seekers', label: 'Careers' },
+  { href: '/careers', label: 'Careers' },
 ];
 
 const legalLinks = [
@@ -30,7 +30,17 @@ const legalLinks = [
   <div class="container">
     <div class="footer-grid">
       <div class="footer-col">
-        <h3 class="footer-title">Hire Ritz</h3>
+        <p class="footer-brand">
+          <img
+            class="footer-logo"
+            src="/images/hire-ritz-logo.png"
+            alt="Hire Ritz"
+            width="200"
+            height="220"
+            loading="lazy"
+            decoding="async"
+          />
+        </p>
         <p class="footer-description">
           IT consultancy partner for enterprises worldwide. We deliver digital transformation,
           cloud solutions, software development, and technology strategy that drive results.
@@ -115,11 +125,19 @@ const legalLinks = [
     margin-bottom: var(--spacing-3xl);
   }
   
-  .footer-title {
-    color: var(--color-bg);
-    font-family: var(--font-display);
-    font-size: var(--font-size-2xl);
-    margin-bottom: var(--spacing-md);
+  .footer-brand {
+    margin: 0 0 var(--spacing-md);
+    line-height: 0;
+  }
+
+  .footer-logo {
+    display: block;
+    height: 64px;
+    width: auto;
+    max-height: 64px;
+    max-width: min(200px, 70vw);
+    object-fit: contain;
+    object-position: left center;
   }
   
   .footer-description {

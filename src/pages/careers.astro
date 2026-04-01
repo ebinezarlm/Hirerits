@@ -1,0 +1,201 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CTASection from '../components/CTASection.astro';
+import CareersResumeForm from '../components/CareersResumeForm.astro';
+import { buildBreadcrumbTrail } from '../utils/schema';
+
+const seo = {
+  title: 'Careers - Explore Global Career Opportunities',
+  description:
+    'Submit your resume and explore global career opportunities across India, North America, Europe, Middle East, and APAC. Mid-level to leadership roles.',
+  keywords: 'careers, job opportunities, career opportunities, submit resume, global jobs, job search',
+};
+
+const { schema: breadcrumbSchema, ui: breadcrumbUi, canonical } = buildBreadcrumbTrail([
+  { name: 'Home', path: '/' },
+  { name: 'Careers', path: '/careers' },
+]);
+
+const seekerBenefits = [
+  {
+    title: 'Exclusive opportunities',
+    desc: 'Access roles that are not always advertised publicly, matched to your level and sector.',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
+    imageAlt: 'City skyline representing global career paths',
+  },
+  {
+    title: 'Dedicated consultants',
+    desc: 'Personal guidance on goals, compensation trends, and interview preparation.',
+    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80',
+    imageAlt: 'Professional team collaboration',
+  },
+  {
+    title: 'Career levels',
+    desc: 'Mid-level, senior, and executive searches—we align you with the right mandate.',
+    image: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80',
+    imageAlt: 'Professional growth and career development',
+  },
+];
+
+const seekerProcessSteps = [
+  {
+    step: '01',
+    title: 'Submit your CV',
+    desc: 'Use the secure form — PDF or Word, up to 5 MB.',
+    image: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&q=80',
+    imageAlt: 'Documents and resume on a desk',
+  },
+  {
+    step: '02',
+    title: 'Introductory conversation',
+    desc: 'We align on your goals, mobility, and preferred industries or regions.',
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80',
+    imageAlt: 'Consultation and career discussion',
+  },
+  {
+    step: '03',
+    title: 'Role matching',
+    desc: 'We present relevant opportunities from our client portfolio.',
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80',
+    imageAlt: 'Strategy and role alignment',
+  },
+  {
+    step: '04',
+    title: 'Interview support',
+    desc: 'Briefings, feedback, and coordination through offer stage.',
+    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80',
+    imageAlt: 'Interview preparation',
+  },
+  {
+    step: '05',
+    title: 'Offer & onboarding',
+    desc: 'Support with negotiation and a smooth transition into your new role.',
+    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80',
+    imageAlt: 'Handshake and onboarding',
+  },
+];
+
+const regions = [
+  { flag: '🇮🇳', label: 'India' },
+  { flag: '🇺🇸', label: 'North America' },
+  { flag: '🇪🇺', label: 'Europe' },
+  { flag: '🇦🇪', label: 'Middle East' },
+  { flag: '🌏', label: 'APAC' },
+];
+---
+
+<PageLayout
+  title={seo.title}
+  description={seo.description}
+  keywords={seo.keywords}
+  canonical={canonical}
+  schema={[breadcrumbSchema]}
+>
+  <PageHero
+    title="Explore Global Career Opportunities"
+    lead="Submit your CV securely and connect with roles across India, North America, Europe, the Middle East, and APAC—from specialist to leadership level."
+    image="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=85"
+    imageAlt="Professional team collaborating in a modern office"
+    breadcrumbItems={breadcrumbUi}
+  />
+
+  <section class="careers-page careers-page-section section-light" aria-labelledby="careers-heading">
+    <div class="section-content">
+      <div class="about-strip section-light">
+        <div class="careers-layout">
+          <div class="careers-layout-main">
+            <div class="section-header">
+              <p class="about-kicker">Careers</p>
+              <h2 id="careers-heading">Why partner with Hire Ritz?</h2>
+              <p class="section-lead">
+                We work with leading organizations worldwide. When you register with us, you get consultants who
+                understand both your skills and the markets you want to work in.
+              </p>
+            </div>
+
+            <div class="section-header about-inner-header">
+              <h3>What you gain</h3>
+              <p class="section-lead">Exclusive mandates, personal guidance, and roles matched to your level.</p>
+            </div>
+            <div class="about-diff-grid">
+              {seekerBenefits.map((item) => (
+                <article class="about-diff-card">
+                  <div class="about-diff-card-image-wrap">
+                    <img
+                      src={item.image}
+                      alt={item.imageAlt}
+                      class="about-diff-card-image"
+                      width="800"
+                      height="500"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="about-diff-card-body">
+                    <h3 class="about-diff-card-title">{item.title}</h3>
+                    <p>{item.desc}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div class="section-header about-inner-header">
+              <h3>How it works</h3>
+              <p class="section-lead">A clear path from application to your next offer.</p>
+            </div>
+            <div class="about-engagement-grid" aria-label="Candidate journey steps">
+              {seekerProcessSteps.map((item) => (
+                <article class="about-engagement-card">
+                  <div class="about-engagement-card-visual">
+                    <span class="about-step-badge">{item.step}</span>
+                    <img
+                      src={item.image}
+                      alt={item.imageAlt}
+                      class="about-engagement-card-image"
+                      width="800"
+                      height="480"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="about-engagement-card-body">
+                    <h3 class="about-engagement-card-title">{item.title}</h3>
+                    <p>{item.desc}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div class="section-header about-inner-header">
+              <h3>Regions we recruit in</h3>
+              <p class="section-lead">Opportunities across the markets we serve every day.</p>
+            </div>
+            <div class="careers-regions" role="list">
+              {regions.map((r) => (
+                <div class="careers-region-pill" role="listitem">
+                  <span aria-hidden="true">{r.flag}</span> {r.label}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <aside class="careers-layout-aside">
+            <CareersResumeForm />
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <CTASection
+        title="Ready for your next move?"
+        description="Upload your CV securely and our consultants will be in touch."
+        primaryCTA={{
+          text: 'Go to CV upload',
+          href: '#resume-form',
+        }}
+      />
+    </div>
+  </section>
+</PageLayout>
