@@ -205,12 +205,13 @@ function getCompanyInitials(company: string): string {
     overflow-x: auto;
     overflow-y: hidden;
     width: 100%;
-    max-width: min(1200px, 75vw);
+    max-width: min(1200px, 100%);
     margin: 0 auto;
     min-height: 24rem;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
   }
 
   .testimonials-marquee::-webkit-scrollbar {
@@ -226,7 +227,8 @@ function getCompanyInitials(company: string): string {
   }
 
   .testimonial-card {
-    flex: 0 0 calc((min(1200px, 75vw) - (var(--spacing-xl) * 2)) / 3);
+    flex: 0 0 auto;
+    width: clamp(260px, 86vw, 380px);
     scroll-snap-align: start;
     background: var(--color-bg);
     padding: 0;
@@ -236,7 +238,7 @@ function getCompanyInitials(company: string): string {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    min-height: 430px;
+    min-height: 400px;
     transition: box-shadow var(--transition-base), border-color var(--transition-base);
   }
 
@@ -374,13 +376,11 @@ function getCompanyInitials(company: string): string {
     display: block;
     margin: 0;
     font-size: 0.94rem;
-    line-height: 1.2;
+    line-height: 1.25;
     min-height: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     text-align: center;
     width: 100%;
+    word-break: break-word;
   }
 
   .testimonial-role {
@@ -404,39 +404,28 @@ function getCompanyInitials(company: string): string {
     }
 
     .direction-btn {
-      width: 2rem;
-      height: 2rem;
-      font-size: 0.9rem;
+      width: 2.75rem;
+      height: 2.75rem;
+      min-width: 44px;
+      min-height: 44px;
+      font-size: 1rem;
     }
 
     .testimonials-track {
       gap: var(--spacing-md);
-      padding: 0;
+      padding: 0 var(--spacing-xs);
     }
 
     .testimonial-card {
-      width: min(82vw, 300px);
-      min-width: 0;
+      width: min(88vw, 340px);
     }
-  }
 
-  @media (max-width: 1200px) {
     .testimonials-marquee {
-      max-width: 84vw;
+      min-height: 20rem;
     }
 
     .testimonial-card {
-      width: clamp(260px, 30vw, 360px);
-    }
-  }
-
-  @media (max-width: 992px) {
-    .testimonials-marquee {
-      max-width: 90vw;
-    }
-
-    .testimonial-card {
-      width: clamp(260px, 42vw, 380px);
+      min-height: 360px;
     }
   }
 

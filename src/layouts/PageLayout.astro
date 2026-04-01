@@ -113,5 +113,16 @@ const {
     .main-content :global(h1) {
       font-size: var(--font-size-3xl);
     }
+
+    .main-content :global(h2) {
+      font-size: var(--font-size-2xl);
+      margin-top: var(--spacing-xl);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .main-content :global(h1) {
+      font-size: var(--font-size-2xl);
+    }
   }
 </style>

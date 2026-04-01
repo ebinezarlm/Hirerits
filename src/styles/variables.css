@@ -97,6 +97,19 @@
   --z-tooltip: 1070;
 }
 
+@media (max-width: 1024px) {
+  :root {
+    --container-padding: 1.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --container-padding: 1rem;
+    --section-padding-y: 3.5rem;
+  }
+}
+
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
   :root {

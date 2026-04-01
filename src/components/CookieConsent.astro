@@ -56,6 +56,7 @@
     box-shadow: var(--shadow-lg);
     z-index: var(--z-modal);
     padding: var(--spacing-lg);
+    padding-bottom: max(var(--spacing-lg), env(safe-area-inset-bottom));
     transform: translateY(0);
     transition: transform var(--transition-base);
   }
@@ -99,14 +100,20 @@
     .cookie-content {
       flex-direction: column;
       align-items: stretch;
+      gap: var(--spacing-md);
     }
-    
+
+    .cookie-text h3 {
+      font-size: var(--font-size-base);
+    }
+
     .cookie-actions {
       width: 100%;
     }
-    
+
     .cookie-actions .btn {
       flex: 1;
+      min-height: 44px;
     }
   }
 </style>
