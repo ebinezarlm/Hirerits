@@ -1,0 +1,113 @@
+:root {
+  /* Colors - modern professional palette */
+  --color-primary: #0f4c81;
+  --color-primary-dark: #0b365c;
+  --color-primary-light: #3f83c2;
+  --color-secondary: #0b1320;
+  --color-accent: #0ea5e9;
+  --color-accent-soft: #e0f2fe;
+  
+  --color-text: #101828;
+  --color-text-light: #344054;
+  --color-text-lighter: #667085;
+  --color-bg: #ffffff;
+  --color-bg-light: #f8fafc;
+  --color-bg-dark: #020617;
+  --color-surface: #f8fafc;
+  --color-surface-elevated: #ffffff;
+  
+  --color-border: #e4e7ec;
+  --color-border-dark: #1f2937;
+  
+  --color-success: #10b981;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+  
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Manrope', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: Georgia, 'Times New Roman', serif;
+  
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  --font-size-4xl: 2.25rem;   /* 36px */
+  --font-size-5xl: 3rem;      /* 48px */
+  --font-size-6xl: 3.75rem;   /* 60px */
+  
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;   /* 4px */
+  --spacing-sm: 0.5rem;    /* 8px */
+  --spacing-md: 1rem;      /* 16px */
+  --spacing-lg: 1.5rem;    /* 24px */
+  --spacing-xl: 2rem;      /* 32px */
+  --spacing-2xl: 3rem;     /* 48px */
+  --spacing-3xl: 4rem;     /* 64px */
+  --spacing-4xl: 6rem;     /* 96px */
+  --spacing-5xl: 8rem;     /* 128px */
+  
+  /* Layout */
+  --container-max-width: 1440px;
+  --container-padding: 1.5rem;
+  --section-padding-y: 5rem;
+  --section-padding-y-mobile: 3rem;
+  
+  --header-height: 72px;
+  --header-height-mobile: 64px;
+  
+  /* Border radius - modern */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+  
+  /* Shadows - soft */
+  --shadow-sm: 0 1px 2px rgb(16 24 40 / 0.06), 0 1px 1px rgb(16 24 40 / 0.04);
+  --shadow-md: 0 6px 16px rgb(16 24 40 / 0.08), 0 2px 6px rgb(16 24 40 / 0.06);
+  --shadow-lg: 0 16px 30px rgb(16 24 40 / 0.12), 0 6px 12px rgb(16 24 40 / 0.06);
+  --shadow-xl: 0 30px 60px rgb(16 24 40 / 0.16), 0 10px 20px rgb(16 24 40 / 0.08);
+  
+  /* Transitions */
+  --transition-fast: 200ms ease;
+  --transition-base: 300ms ease;
+  --transition-slow: 400ms ease;
+  
+  /* Z-index */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text: #f9fafb;
+    --color-text-light: #d1d5db;
+    --color-text-lighter: #9ca3af;
+    --color-bg: #111827;
+    --color-bg-light: #1f2937;
+    --color-bg-dark: #030712;
+    
+    --color-border: #374151;
+    --color-border-dark: #4b5563;
+  }
+}

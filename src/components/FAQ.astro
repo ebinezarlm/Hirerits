@@ -1,0 +1,195 @@
+---
+import { generateFAQSchema } from '../utils/schema';
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  title?: string;
+  faqs: FAQItem[];
+  schema?: boolean;
+  embedded?: boolean;
+}
+
+const { title = 'Frequently Asked Questions', faqs, schema = true, embedded = false } = Astro.props;
+
+if (schema) {
+  generateFAQSchema(faqs);
+}
+---
+
+{
+  embedded ? (
+    <div class="faq-embed">
+      <div class="faq-list">
+        {faqs.map((faq, index) => (
+          <div class="faq-item">
+            <button
+              class="faq-question"
+              aria-expanded="false"
+              aria-controls={`faq-answer-${index}`}
+              id={`faq-question-${index}`}
+            >
+              <span class="faq-question-text">{faq.question}</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div
+              class="faq-answer"
+              id={`faq-answer-${index}`}
+              aria-labelledby={`faq-question-${index}`}
+              role="region"
+            >
+              <p>{faq.answer}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  ) : (
+    <section class="faq-section">
+      <div class="container">
+        {title && <h2 class="faq-title">{title}</h2>}
+
+        <div class="faq-list">
+          {faqs.map((faq, index) => (
+            <div class="faq-item">
+              <button
+                class="faq-question"
+                aria-expanded="false"
+                aria-controls={`faq-answer-standalone-${index}`}
+                id={`faq-question-standalone-${index}`}
+              >
+                <span class="faq-question-text">{faq.question}</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div
+                class="faq-answer"
+                id={`faq-answer-standalone-${index}`}
+                aria-labelledby={`faq-question-standalone-${index}`}
+                role="region"
+              >
+                <p>{faq.answer}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+<script>
+  document.querySelectorAll('.faq-question').forEach((button) => {
+    button.addEventListener('click', () => {
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+      const answer = button.nextElementSibling as HTMLElement;
+      const icon = button.querySelector('.faq-icon') as HTMLElement;
+      const list = button.closest('.faq-list');
+      const scopeItems = list?.querySelectorAll('.faq-item') ?? document.querySelectorAll('.faq-item');
+
+      scopeItems.forEach((item) => {
+        if (item !== button.parentElement) {
+          const otherButton = item.querySelector('.faq-question') as HTMLElement;
+          const otherAnswer = item.querySelector('.faq-answer') as HTMLElement;
+          const otherIcon = item.querySelector('.faq-icon') as HTMLElement;
+
+          otherButton.setAttribute('aria-expanded', 'false');
+          otherAnswer.classList.remove('open');
+          if (otherIcon) otherIcon.textContent = '+';
+        }
+      });
+
+      button.setAttribute('aria-expanded', String(!isExpanded));
+      answer.classList.toggle('open');
+      if (icon) icon.textContent = isExpanded ? '+' : '−';
+    });
+  });
+</script>
+
+<style>
+  .faq-section {
+    padding: var(--spacing-4xl) 0;
+  }
+
+  .faq-embed {
+    width: 100%;
+  }
+
+  .faq-embed .faq-list {
+    max-width: 48rem;
+    margin: 0 auto;
+  }
+
+  .faq-title {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .faq-item:first-child {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-lg) 0;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    transition: color var(--transition-fast);
+  }
+
+  .faq-question:hover,
+  .faq-question:focus {
+    color: var(--color-primary);
+    outline: none;
+  }
+
+  .faq-question-text {
+    flex: 1;
+    padding-right: var(--spacing-md);
+  }
+
+  .faq-icon {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    transition: transform var(--transition-base);
+    flex-shrink: 0;
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-base);
+    padding: 0 var(--spacing-lg);
+  }
+
+  .faq-answer.open {
+    max-height: 500px;
+    padding: 0 var(--spacing-lg) var(--spacing-lg);
+  }
+
+  .faq-answer p {
+    color: var(--color-text-light);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+</style>

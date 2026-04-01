@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "name": "Sarah Chen",
+    "role": "Chief People Officer",
+    "company": "Infosys",
+    "testimonial": "Hire Ritz transformed our executive hiring process. Their consultative approach and global reach helped us find the perfect C-suite candidates across three continents.",
+    "rating": 5,
+    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80",
+    "imageAlt": "Sarah Chen",
+    "companyLogo": "/images/logos/infosys.svg"
+  },
+  {
+    "id": 2,
+    "name": "Michael Rodriguez",
+    "role": "VP of Talent Acquisition",
+    "company": "TCS",
+    "testimonial": "We needed to scale our engineering team by 200+ in 6 months. Hire Ritz's volume hiring solution delivered exceptional candidates on time, every time.",
+    "rating": 5,
+    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=80",
+    "imageAlt": "Michael Rodriguez",
+    "companyLogo": "/images/logos/tcs.svg"
+  },
+  {
+    "id": 3,
+    "name": "Priya Sharma",
+    "role": "HR Director",
+    "company": "Barclays",
+    "testimonial": "The team's deep industry knowledge in healthcare and pharma made all the difference. They understand our unique requirements and deliver consistently.",
+    "rating": 5,
+    "image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&q=80",
+    "imageAlt": "Priya Sharma",
+    "companyLogo": "/images/logos/barclays.svg"
+  },
+  {
+    "id": 4,
+    "name": "David Thompson",
+    "role": "Chief Operating Officer",
+    "company": "FinEdge Holdings",
+    "testimonial": "From leadership hiring to strategic workforce planning, Hire Ritz gave us a dependable and highly structured recruitment partner across multiple countries.",
+    "rating": 5,
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80",
+    "imageAlt": "David Thompson",
+    "companyLogo": "/images/logos/adobe.svg"
+  },
+  {
+    "id": 5,
+    "name": "Ananya Iyer",
+    "role": "Talent Acquisition Head",
+    "company": "RetailNova Group",
+    "testimonial": "We scaled teams rapidly during expansion and still maintained quality. Their process discipline and turnaround times are among the best we have seen.",
+    "rating": 5,
+    "image": "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=600&q=80",
+    "imageAlt": "Ananya Iyer",
+    "companyLogo": "/images/logos/ibm.svg"
+  },
+  {
+    "id": 6,
+    "name": "Omar Khalid",
+    "role": "Regional HR Lead",
+    "company": "TeleLink International",
+    "testimonial": "Hire Ritz delivered exceptional candidates for difficult telecom roles and improved our hiring velocity across regions without compromising fit or quality.",
+    "rating": 5,
+    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80",
+    "imageAlt": "Omar Khalid",
+    "companyLogo": "/images/logos/airbnb.svg"
+  }
+]

@@ -1,0 +1,302 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CTASection from '../components/CTASection.astro';
+import { generateBreadcrumbSchema } from '../utils/schema';
+
+const seo = {
+  title: 'For Employers - Hire Top Talent Globally',
+  description: 'Engagement models, hiring processes, and talent solutions for employers. Executive search and volume staffing services tailored to your needs.',
+  keywords: 'employer services, hiring solutions, talent acquisition, recruitment services for employers',
+  canonical: '/employers',
+};
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: 'https://hireritz.com/' },
+  { name: 'Employers', url: 'https://hireritz.com/employers' },
+]);
+---
+
+<PageLayout
+  title={seo.title}
+  description={seo.description}
+  keywords={seo.keywords}
+  canonical={seo.canonical}
+  schema={[breadcrumbSchema]}
+>
+  <PageHero
+    title="Hire Top Talent Globally"
+    lead="Whether you need executive leadership or scalable workforce solutions, we have the expertise and global reach to help you build world-class teams."
+    image="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80"
+    imageAlt="Team collaboration"
+  />
+
+  <section class="section section-light">
+    <div class="container">
+    <div class="content-main max-w-4xl mx-auto">
+          <h2>Engagement Models</h2>
+          <p>
+            We offer flexible engagement models tailored to your hiring needs, 
+            timeline, and budget:
+          </p>
+          
+          <div class="engagement-grid">
+            <div class="engagement-card">
+              <h3>Executive Search</h3>
+              <p>
+                Retained or contingency-based executive search for C-suite and 
+                senior leadership positions. Consultative approach with dedicated 
+                search consultants.
+              </p>
+              <ul>
+                <li>Retained search</li>
+                <li>Contingency search</li>
+                <li>Exclusive search</li>
+              </ul>
+              <a href="/executive-search" class="btn btn-primary">Learn More</a>
+            </div>
+            
+            <div class="engagement-card">
+              <h3>Volume Staffing</h3>
+              <p>
+                Project-based or ongoing volume staffing solutions for bulk hiring 
+                needs. Process-driven approach with dedicated account management.
+              </p>
+              <ul>
+                <li>Project-based hiring</li>
+                <li>Ongoing staffing</li>
+                <li>Recruitment Process Outsourcing (RPO)</li>
+              </ul>
+              <a href="/global-staffing" class="btn btn-primary">Learn More</a>
+            </div>
+          </div>
+          
+          <h2>Our Hiring Process</h2>
+          <p>
+            Whether you're hiring one executive or scaling a team of hundreds, 
+            our process is designed to deliver quality results efficiently:
+          </p>
+          
+          <div class="process-timeline">
+            <div class="timeline-item">
+              <div class="timeline-marker">1</div>
+              <div class="timeline-content">
+                <h3>Discovery & Planning</h3>
+                <p>We start by understanding your requirements, culture, and success criteria. This includes role definition, candidate profile, and hiring timeline.</p>
+              </div>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-marker">2</div>
+              <div class="timeline-content">
+                <h3>Talent Sourcing</h3>
+                <p>Multi-channel sourcing leveraging our global network, job boards, social media, and direct outreach to passive candidates.</p>
+              </div>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-marker">3</div>
+              <div class="timeline-content">
+                <h3>Screening & Assessment</h3>
+                <p>Rigorous screening including resume review, phone/video interviews, technical assessments, and reference checks.</p>
+              </div>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-marker">4</div>
+              <div class="timeline-content">
+                <h3>Shortlist Presentation</h3>
+                <p>Curated list of qualified candidates with detailed profiles, assessment results, and recommendations.</p>
+              </div>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-marker">5</div>
+              <div class="timeline-content">
+                <h3>Interview Coordination</h3>
+                <p>We facilitate interviews, collect feedback, and provide guidance throughout the interview process.</p>
+              </div>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-marker">6</div>
+              <div class="timeline-content">
+                <h3>Offer & Onboarding</h3>
+                <p>Support with offer negotiation, background checks, and smooth onboarding to ensure successful placement.</p>
+              </div>
+            </div>
+          </div>
+          
+          <h2>Why Choose Hire Ritz?</h2>
+          <div class="benefits-grid">
+            <div class="benefit-item">
+              <h4>Global Reach</h4>
+              <p>Access to talent across India, North America, Europe, Middle East, and APAC</p>
+            </div>
+            <div class="benefit-item">
+              <h4>Industry Expertise</h4>
+              <p>Deep knowledge across IT, Healthcare, Pharma, BFSI, Retail, Manufacturing, and Telecom</p>
+            </div>
+            <div class="benefit-item">
+              <h4>Dual Capabilities</h4>
+              <p>Both executive search and volume staffing under one roof</p>
+            </div>
+            <div class="benefit-item">
+              <h4>Quality Assurance</h4>
+              <p>Rigorous screening and assessment processes ensure candidate quality</p>
+            </div>
+            <div class="benefit-item">
+              <h4>Speed & Efficiency</h4>
+              <p>Process-driven approach enables rapid hiring without compromising quality</p>
+            </div>
+            <div class="benefit-item">
+              <h4>Partnership Approach</h4>
+              <p>We view ourselves as long-term partners, not just service providers</p>
+            </div>
+          </div>
+    </div>
+  </section>
+  
+  <CTASection
+    title="Ready to Build Your Team?"
+    description="Let's discuss your hiring needs and how we can help you find the right talent."
+    primaryCTA={{
+      text: 'Get Started',
+      href: '/contact',
+    }}
+    secondaryCTA={{
+      text: 'View Services',
+      href: '/executive-search',
+    }}
+  />
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .page-subtitle {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-light);
+    max-width: 800px;
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-2xl);
+  }
+  
+  .content-main h2 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .content-main h3 {
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .engagement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+    margin: var(--spacing-xl) 0;
+  }
+  
+  .engagement-card {
+    padding: var(--spacing-xl);
+    background: var(--color-bg-light);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+  
+  .engagement-card h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .engagement-card ul {
+    margin: var(--spacing-md) 0;
+  }
+  
+  .process-timeline {
+    margin: var(--spacing-2xl) 0;
+    position: relative;
+    padding-left: var(--spacing-xl);
+  }
+  
+  .process-timeline::before {
+    content: '';
+    position: absolute;
+    left: 25px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--color-border);
+  }
+  
+  .timeline-item {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-2xl);
+    position: relative;
+  }
+  
+  .timeline-marker {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-weight-bold);
+    position: relative;
+    z-index: 1;
+  }
+  
+  .timeline-content h3 {
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-primary);
+  }
+  
+  .timeline-content p {
+    margin: 0;
+  }
+  
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin: var(--spacing-xl) 0;
+  }
+  
+  .benefit-item {
+    padding: var(--spacing-lg);
+    background: var(--color-bg-light);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+  }
+  
+  .benefit-item h4 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .benefit-item p {
+    margin: 0;
+    font-size: var(--font-size-sm);
+  }
+  
+  @media (max-width: 768px) {
+    .page-subtitle {
+      font-size: var(--font-size-lg);
+    }
+    
+    .process-timeline {
+      padding-left: 0;
+    }
+    
+    .process-timeline::before {
+      display: none;
+    }
+  }
+</style>

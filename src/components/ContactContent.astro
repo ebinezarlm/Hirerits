@@ -1,0 +1,150 @@
+---
+import ContactFormGrid from './ContactFormGrid.astro';
+
+interface Props {
+  embedded?: boolean;
+}
+
+const { embedded = false } = Astro.props;
+---
+
+{
+  embedded ? (
+    <div class="contact-content contact-content-embedded">
+      <ContactFormGrid />
+    </div>
+  ) : (
+    <section class="section section-light contact-content">
+      <div class="container">
+        <ContactFormGrid idSuffix="-standalone" />
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .contact-content .container {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-2xl);
+  }
+
+  .contact-content-embedded {
+    width: 100%;
+  }
+
+  .contact-content-embedded :global(.contact-grid) {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  :global(.contact-grid) {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    gap: var(--spacing-2xl);
+    align-items: start;
+  }
+
+  :global(.contact-form-section),
+  :global(.contact-info-section) {
+    background: var(--color-surface-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-xl);
+  }
+
+  :global(.contact-form-section h2),
+  :global(.contact-info-section h2) {
+    margin: 0 0 var(--spacing-lg);
+  }
+  :global(.form-group) {
+    margin-bottom: var(--spacing-md);
+  }
+  :global(.form-group label) {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+  }
+  :global(.form-group input),
+  :global(.form-group select),
+  :global(.form-group textarea) {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    font-family: inherit;
+  }
+  :global(.form-group input:focus),
+  :global(.form-group select:focus),
+  :global(.form-group textarea:focus) {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.15);
+  }
+  :global(.form-group input.error),
+  :global(.form-group select.error),
+  :global(.form-group textarea.error) {
+    border-color: var(--color-error);
+  }
+  :global(.contact-info) {
+    margin-bottom: var(--spacing-xl);
+  }
+  :global(.info-item) {
+    margin-bottom: var(--spacing-lg);
+  }
+  :global(.info-item h3) {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-lg);
+  }
+  :global(.info-item p) {
+    margin: 0;
+    color: var(--color-text-light);
+  }
+  :global(.info-item a) {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  :global(.info-item a:hover) {
+    text-decoration: underline;
+  }
+  :global(.regions-section h3) {
+    margin-bottom: var(--spacing-md);
+    color: var(--color-primary);
+  }
+  :global(.regions-list) {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  :global(.regions-list li) {
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text-light);
+    line-height: 1.5;
+  }
+  @media (max-width: 968px) {
+    :global(.contact-grid) {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-2xl);
+    }
+  }
+  @media (max-width: 768px) {
+    :global(.contact-grid) {
+      gap: var(--spacing-xl);
+    }
+
+    :global(.contact-form-section),
+    :global(.contact-info-section) {
+      padding: var(--spacing-lg);
+    }
+
+    .contact-content .container {
+      padding: var(--spacing-lg);
+    }
+  }
+</style>

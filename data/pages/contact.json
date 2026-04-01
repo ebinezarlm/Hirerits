@@ -1,0 +1,37 @@
+{
+  "seo": {
+    "title": "Contact Us - IT Consultancy | Hire Ritz",
+    "description": "Get in touch with Hire Ritz for technology consulting, digital transformation, cloud, and software solutions. We serve clients globally.",
+    "keywords": "contact hire ritz, IT consultancy contact, technology consulting"
+  },
+  "pageHero": {
+    "title": "Contact Us",
+    "lead": "Have a technology or digital transformation challenge? Tell us about your goals and we'll get back to you.",
+    "image": "https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=800&q=80",
+    "imageAlt": "Contact and communication"
+  },
+  "formHeading": "Send a message",
+  "contactHeading": "Get in touch",
+  "supportCallout": {
+    "title": "Existing client? Need IT support?",
+    "body": "24/7 support line for technical issues and outages.",
+    "phone": "+1 (234) 567-8900",
+    "email": "support@hireritz.com"
+  },
+  "contactInfo": {
+    "email": "contact@hireritz.com",
+    "phone": "+1 (234) 567-8900",
+    "officeHours": "Monday – Friday: 9:00 AM – 6:00 PM\nSaturday: 10:00 AM – 2:00 PM",
+    "support24_7": "Help desk and critical issues: +1 (234) 567-8900\nsupport@hireritz.com"
+  },
+  "regions": {
+    "title": "Global offices",
+    "list": [
+      "India: Mumbai, Bangalore, Delhi",
+      "North America: New York, San Francisco",
+      "Europe: London, Frankfurt",
+      "Middle East: Dubai, Riyadh",
+      "APAC: Singapore, Sydney"
+    ]
+  }
+}

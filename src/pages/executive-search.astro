@@ -1,0 +1,108 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CTASection from '../components/CTASection.astro';
+import { generateServiceSchema, generateBreadcrumbSchema } from '../utils/schema';
+
+const seo = {
+  title: 'Solutions - Technology & Digital Transformation | Hire Ritz',
+  description: 'End-to-end technology solutions: digital transformation, cloud, software development, cybersecurity, and data & analytics. Partner with experts who deliver.',
+  keywords: 'technology solutions, digital transformation, cloud solutions, software development, IT consulting',
+  canonical: '/executive-search',
+};
+
+const serviceSchema = generateServiceSchema({
+  name: 'Technology Solutions & Digital Transformation',
+  description: seo.description,
+  provider: { name: 'Hire Ritz', url: 'https://hireritz.com' },
+  areaServed: ['India', 'North America', 'Europe', 'Middle East', 'APAC'],
+  serviceType: 'IT Consultancy',
+});
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: 'https://hireritz.com/' },
+  { name: 'Solutions', url: 'https://hireritz.com/executive-search' },
+]);
+
+const solutionAreas = [
+  { title: 'Digital Strategy & Transformation', desc: 'Roadmaps, operating model design, and program delivery to modernize your business with technology.', image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80', imageAlt: 'Digital transformation and strategy' },
+  { title: 'Cloud & Infrastructure', desc: 'Migration, hybrid cloud, and infrastructure optimization on leading platforms for scale and resilience.', image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80', imageAlt: 'Cloud and infrastructure' },
+  { title: 'Custom Software & Product Development', desc: 'Full-cycle product development, modern engineering practices, and ongoing evolution of your digital products.', image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&q=80', imageAlt: 'Software development' },
+  { title: 'Cybersecurity & Compliance', desc: 'Security assessments, compliance readiness, and implementation of controls to protect data and systems.', image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&q=80', imageAlt: 'Cybersecurity and compliance' },
+  { title: 'Data, Analytics & AI', desc: 'Data strategy, engineering, and analytics to turn data into decisions and competitive advantage.', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80', imageAlt: 'Data and analytics' },
+];
+
+const howWeWorkItems = [
+  { title: 'Discovery & strategy', desc: 'We start by understanding your objectives, constraints, and culture so every recommendation is grounded in your context.', image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80', imageAlt: 'Discovery and strategy' },
+  { title: 'Design & build', desc: 'We design and implement solutions in phases, with clear milestones and feedback loops so you stay in control.', image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=80', imageAlt: 'Design and build' },
+  { title: 'Run & improve', desc: 'We support ongoing operations and continuous improvement so your systems and teams keep performing.', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80', imageAlt: 'Run and improve' },
+  { title: 'Partner for the long term', desc: 'We act as an extension of your team, with flexible engagement models and a focus on outcomes, not just deliverables.', image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&q=80', imageAlt: 'Long-term partnership' },
+];
+---
+
+<PageLayout
+  title={seo.title}
+  description={seo.description}
+  keywords={seo.keywords}
+  canonical={seo.canonical}
+  schema={[serviceSchema, breadcrumbSchema]}
+>
+  <PageHero
+    title="Solutions"
+    lead="We deliver technology and digital transformation solutions that align with your business goals—from strategy and cloud to software, security, and data."
+    image="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80"
+    imageAlt="Strategy and technology"
+  />
+
+  <section class="section section-light">
+    <div class="container">
+      <div class="section-header">
+        <h2>What We Offer</h2>
+        <p class="section-lead">End-to-end capabilities to transform and run your technology.</p>
+      </div>
+      <div class="services-grid">
+        {solutionAreas.map((s) => (
+          <div class="service-card">
+            <div class="service-card-image-wrap">
+              <img src={s.image} alt={s.imageAlt} class="service-card-image" width="600" height="340" loading="lazy" />
+            </div>
+            <h3>{s.title}</h3>
+            <p>{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>How We Work</h2>
+        <p class="section-lead">From discovery through delivery and beyond.</p>
+      </div>
+      <div class="services-grid">
+        {howWeWorkItems.map((item) => (
+          <div class="service-card">
+            <div class="service-card-image-wrap">
+              <img src={item.image} alt={item.imageAlt} class="service-card-image" width="600" height="340" loading="lazy" />
+            </div>
+            <h3>{item.title}</h3>
+            <p>{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-light">
+    <div class="container">
+      <CTASection
+        title="Discuss Your Goals"
+        description="Tell us about your technology challenges. We'll help you choose the right solution and get started."
+        primaryCTA={{ text: 'Contact Us', href: '/contact' }}
+        secondaryCTA={{ text: 'View Industries', href: '/industries' }}
+      />
+    </div>
+  </section>
+</PageLayout>
+

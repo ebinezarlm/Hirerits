@@ -1,0 +1,50 @@
+{
+  "seo": {
+    "title": "About Us - IT Consultancy | Hire Ritz",
+    "description": "Hire Ritz is a global IT consultancy helping enterprises transform with technology—digital strategy, cloud, software, security, and data. Partner with experts who deliver.",
+    "keywords": "about hire ritz, IT consultancy, technology consulting, digital transformation company"
+  },
+  "pageHero": {
+    "title": "About Us",
+    "lead": "We are a global IT consultancy that helps enterprises transform with technology. From strategy and cloud to software, security, and data—we deliver solutions that drive results.",
+    "image": "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&q=80",
+    "imageAlt": "Team and technology"
+  },
+  "whatWeDo": {
+    "title": "What We Do",
+    "lead": "End-to-end technology capabilities to transform and run your business.",
+    "items": [
+      { "title": "Digital transformation", "desc": "We help you define and execute technology-led change—modernizing operations, customer experience, and product delivery.", "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80", "imageAlt": "Digital transformation" },
+      { "title": "Cloud & infrastructure", "desc": "We design, migrate, and optimize cloud and hybrid infrastructure so you can scale with confidence.", "image": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80", "imageAlt": "Cloud and infrastructure" },
+      { "title": "Software & product development", "desc": "We build and evolve custom software and digital products using modern engineering and product practices.", "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&q=80", "imageAlt": "Software development" },
+      { "title": "Data, security & compliance", "desc": "We help you leverage data safely—with the right security, compliance, and analytics in place.", "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&q=80", "imageAlt": "Data and security" }
+    ]
+  },
+  "regions": {
+    "title": "Global Presence",
+    "lead": "We serve clients across key regions with onshore and offshore delivery.",
+    "items": [
+      { "name": "India", "desc": "Technology hubs and delivery centers", "image": "https://images.unsplash.com/photo-1570168006294-d623e9362e1b?w=1200&q=90", "imageAlt": "India" },
+      { "name": "North America", "desc": "US and Canada", "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90", "imageAlt": "North America" },
+      { "name": "Europe", "desc": "Pan-European coverage", "image": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1200&q=90", "imageAlt": "Europe" },
+      { "name": "Middle East", "desc": "GCC and regional markets", "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1200&q=90", "imageAlt": "Middle East" },
+      { "name": "APAC", "desc": "Southeast Asia, Australia, and broader APAC", "image": "https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&q=90", "imageAlt": "APAC" }
+    ]
+  },
+  "values": {
+    "title": "Our Values",
+    "items": [
+      { "name": "Excellence", "desc": "We aim for high standards in every engagement and deliver measurable outcomes.", "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80", "imageAlt": "Excellence" },
+      { "name": "Integrity", "desc": "We operate with transparency, ethics, and clear communication.", "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=80", "imageAlt": "Integrity" },
+      { "name": "Partnership", "desc": "We act as long-term partners, invested in your success beyond the project.", "image": "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&q=80", "imageAlt": "Partnership" },
+      { "name": "Innovation", "desc": "We keep pace with technology and best practices so you stay ahead.", "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80", "imageAlt": "Innovation" },
+      { "name": "Global reach", "desc": "We bring a global perspective and delivery model while respecting local context.", "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80", "imageAlt": "Global reach" }
+    ]
+  },
+  "cta": {
+    "title": "Let's Work Together",
+    "description": "Tell us about your technology goals. We'll help you get there.",
+    "primaryCTA": { "text": "Contact Us", "href": "/contact" },
+    "secondaryCTA": { "text": "Our Solutions", "href": "/executive-search" }
+  }
+}

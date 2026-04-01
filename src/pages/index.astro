@@ -1,0 +1,1307 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { Picture } from 'astro:assets';
+import Hero from '../components/Hero.astro';
+import ContactContent from '../components/ContactContent.astro';
+import Testimonials from '../components/Testimonials.astro';
+import FAQ from '../components/FAQ.astro';
+import ClientLogos from '../components/ClientLogos.astro';
+import { generateServiceSchema } from '../utils/schema';
+import executiveHeroImage from '../assets/images/executive-hero.jpg';
+import executiveProcessImage from '../assets/images/executive-process.jpg';
+import executiveGlobalImage from '../assets/images/executive-global.jpg';
+import staffingHeroImage from '../assets/images/staffing-hero.jpg';
+import staffingWorkflowImage from '../assets/images/staffing-workflow.jpg';
+import staffingScaleImage from '../assets/images/staffing-scale.jpg';
+
+const seo = {
+  title: 'Global Recruitment & Staffing Solutions',
+  description: 'Trusted global talent partner delivering premium executive search and scalable staffing solutions across India, North America, Europe, Middle East, and APAC.',
+  keywords: 'global recruitment, executive search, leadership hiring, volume staffing, talent acquisition, global staffing solutions',
+  canonical: '/',
+};
+
+const executiveSearchSchema = generateServiceSchema({
+  name: 'Executive Search & Leadership Hiring',
+  description: 'Premium consultative executive search services for C-suite and senior leadership positions across global markets.',
+  provider: {
+    name: 'Hire Ritz',
+    url: 'https://hireritz.com',
+  },
+  areaServed: ['India', 'North America', 'Europe', 'Middle East', 'APAC'],
+  serviceType: 'Executive Recruitment',
+});
+
+const globalStaffingSchema = generateServiceSchema({
+  name: 'Global Staffing & Volume Hiring',
+  description: 'High-volume, scalable staffing solutions for fast-growing organizations requiring bulk talent acquisition.',
+  provider: {
+    name: 'Hire Ritz',
+    url: 'https://hireritz.com',
+  },
+  areaServed: ['India', 'North America', 'Europe', 'Middle East', 'APAC'],
+  serviceType: 'Volume Recruitment',
+});
+
+const homeFAQs = [
+  {
+    question: 'What is the difference between executive search and volume staffing?',
+    answer: 'Executive search focuses on finding C-suite and senior leadership positions through a consultative, personalized approach. Volume staffing is designed for high-volume, process-driven bulk hiring needs, typically for mid-level positions across multiple roles simultaneously.',
+  },
+  {
+    question: 'Which regions do you serve?',
+    answer: 'We serve clients and candidates across India, North America, Europe, Middle East, and APAC regions, providing global talent solutions with local expertise.',
+  },
+  {
+    question: 'What industries do you specialize in?',
+    answer: 'We cover IT, Non-IT, Healthcare, Pharmaceuticals, BFSI, Retail, Manufacturing, and Telecommunications industries, with deep expertise in each vertical.',
+  },
+  {
+    question: 'How long does the executive search process take?',
+    answer: 'Executive search timelines vary based on role complexity and market conditions, typically ranging from 8-16 weeks for C-suite positions. We work closely with clients to establish realistic timelines and deliver exceptional candidates.',
+  },
+  {
+    question: 'Can you handle bulk hiring requirements?',
+    answer: 'Yes, our volume staffing solutions are designed for organizations needing to scale quickly. We can handle hundreds of positions simultaneously with our process-driven approach and global talent network.',
+  },
+];
+
+const aboutWhatWeDoItems = [
+  { title: 'Digital transformation', desc: 'We help you define and execute technology-led change - modernizing operations, customer experience, and product delivery.', image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80', imageAlt: 'Digital transformation' },
+  { title: 'Cloud & infrastructure', desc: 'We design, migrate, and optimize cloud and hybrid infrastructure so you can scale with confidence.', image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80', imageAlt: 'Cloud and infrastructure' },
+  { title: 'Software & product development', desc: 'We build and evolve custom software and digital products using modern engineering and product practices.', image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&q=80', imageAlt: 'Software development' },
+  { title: 'Data, security & compliance', desc: 'We help you leverage data safely - with the right security, compliance, and analytics in place.', image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&q=80', imageAlt: 'Data and security' },
+];
+
+const aboutDifferentiators = [
+  {
+    title: 'Business-first consulting',
+    desc: 'We align every technology initiative to measurable business outcomes such as growth, efficiency, and customer experience improvements.',
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80',
+    imageAlt: 'Business strategy and consulting discussion',
+  },
+  {
+    title: 'Execution depth',
+    desc: 'Our teams combine strategy, architecture, engineering, and delivery governance so ideas move from roadmap to real results.',
+    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80',
+    imageAlt: 'Cross-functional team collaborating on delivery',
+  },
+  {
+    title: 'Industry context',
+    desc: 'We tailor recommendations based on sector realities, compliance constraints, and operating models unique to each client.',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
+    imageAlt: 'Modern city and industry skyline',
+  },
+  {
+    title: 'Global delivery model',
+    desc: 'With distributed teams and structured collaboration, we deliver high quality at speed across time zones.',
+    image: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80',
+    imageAlt: 'Global connectivity and distributed teams',
+  },
+];
+
+const aboutEngagementModel = [
+  {
+    step: '01',
+    title: 'Assess',
+    desc: 'Understand goals, constraints, and current-state maturity across people, process, and technology.',
+    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80',
+    imageAlt: 'Discovery workshop and assessment',
+  },
+  {
+    step: '02',
+    title: 'Design',
+    desc: 'Define solution architecture, delivery approach, milestones, and success metrics.',
+    image: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=800&q=80',
+    imageAlt: 'Solution design and planning',
+  },
+  {
+    step: '03',
+    title: 'Deliver',
+    desc: 'Execute in phased increments with transparent reporting, risk management, and quality controls.',
+    image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80',
+    imageAlt: 'Project delivery and execution',
+  },
+  {
+    step: '04',
+    title: 'Optimize',
+    desc: 'Continuously improve performance, adoption, and value realization after go-live.',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
+    imageAlt: 'Analytics and continuous improvement',
+  },
+];
+
+const executiveApproachItems = [
+  {
+    title: 'Consultative Partnership',
+    desc: 'We work closely with you to understand your unique requirements, culture, and strategic objectives.',
+    image: executiveProcessImage,
+    imageAlt: 'Recruitment consultants collaborating with clients on executive search',
+    isLocal: true,
+  },
+  {
+    title: 'Global Talent Network',
+    desc: 'Access to passive candidates and executive talent across India, North America, Europe, Middle East, and APAC.',
+    image: executiveGlobalImage,
+    imageAlt: 'Global business leaders collaborating across markets',
+    isLocal: true,
+  },
+  {
+    title: 'Industry Expertise',
+    desc: 'Deep knowledge of IT, Healthcare, Pharma, BFSI, Retail, Manufacturing, and Telecom sectors.',
+    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80',
+    imageAlt: 'Cross-industry expertise and sector knowledge',
+    isLocal: false,
+  },
+  {
+    title: 'Rigorous Assessment',
+    desc: 'Comprehensive evaluation including behavioral interviews, reference checks, and cultural fit analysis.',
+    image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&q=80',
+    imageAlt: 'Structured executive interview and assessment',
+    isLocal: false,
+  },
+  {
+    title: 'Discrete & Confidential',
+    desc: 'We maintain the highest levels of confidentiality throughout the search process.',
+    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80',
+    imageAlt: 'Confidential executive search process',
+    isLocal: false,
+  },
+];
+
+const executiveRoleLevels = [
+  {
+    badge: 'C',
+    title: 'C-Suite',
+    desc: 'CEO, CFO, CTO, CHRO, CMO, and other C-level positions',
+    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80',
+    imageAlt: 'C-suite executive leadership',
+  },
+  {
+    badge: 'VP',
+    title: 'VP & SVP',
+    desc: 'Vice Presidents and Senior Vice Presidents across functions',
+    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80',
+    imageAlt: 'Senior vice president leadership roles',
+  },
+  {
+    badge: 'Dir',
+    title: 'Director Level',
+    desc: 'Senior Directors and functional heads',
+    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800&q=80',
+    imageAlt: 'Director level leadership',
+  },
+];
+
+const staffingWhyItems = [
+  {
+    title: 'Process-Driven Excellence',
+    desc: 'Standardized, repeatable processes that ensure consistency and quality at scale.',
+    image: staffingWorkflowImage,
+    imageAlt: 'Recruitment team reviewing high volume hiring pipeline and data dashboard',
+    isLocal: true,
+  },
+  {
+    title: 'Speed to Market',
+    desc: 'Rapid candidate sourcing, screening, and placement to meet aggressive hiring timelines.',
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80',
+    imageAlt: 'Fast-paced hiring and organizational scaling',
+    isLocal: false,
+  },
+  {
+    title: 'Global Talent Pool',
+    desc: 'Access to candidates across India, North America, Europe, Middle East, and APAC.',
+    image: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80',
+    imageAlt: 'Global talent sourcing and coverage',
+    isLocal: false,
+  },
+  {
+    title: 'Technology-Enabled',
+    desc: 'Leveraging ATS, automation, and data-driven insights for efficient hiring.',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
+    imageAlt: 'Data-driven hiring technology and analytics',
+    isLocal: false,
+  },
+  {
+    title: 'Quality Assurance',
+    desc: 'Multi-stage screening and validation to ensure candidate quality.',
+    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80',
+    imageAlt: 'Professional screening and candidate quality',
+    isLocal: false,
+  },
+  {
+    title: 'Scalable Operations',
+    desc: 'Dedicated teams that can ramp up or down based on your hiring needs.',
+    image: staffingScaleImage,
+    imageAlt: 'Team onboarding and workforce scaling for global business operations',
+    isLocal: true,
+  },
+];
+
+const staffingDeliveryModels = [
+  {
+    badge: 'Vol',
+    title: 'Volume hiring',
+    desc: 'High-volume recruitment for multiple roles simultaneously with dedicated delivery teams.',
+    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80',
+    imageAlt: 'Volume hiring and team expansion',
+  },
+  {
+    badge: 'RPO',
+    title: 'Recruitment process outsourcing',
+    desc: 'End-to-end RPO with SLAs, reporting, and continuous optimization of your hiring funnel.',
+    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80',
+    imageAlt: 'Recruitment operations and outsourcing partnership',
+  },
+  {
+    badge: 'Prj',
+    title: 'Project-based hiring',
+    desc: 'Time-bound campaigns for launches, expansions, or transformation programs.',
+    image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80',
+    imageAlt: 'Project-based recruitment campaign',
+  },
+];
+
+const industriesHero = {
+  src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1440&q=80',
+  alt: 'Cross-industry teams and strategic collaboration',
+};
+
+const industriesVerticals = [
+  {
+    title: 'IT & Technology',
+    desc: 'Software engineers, data scientists, cloud architects, and technology leaders across all levels.',
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80',
+    imageAlt: 'IT and technology workspace',
+  },
+  {
+    title: 'Healthcare',
+    desc: 'Medical professionals, healthcare administrators, and clinical leadership positions.',
+    image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80',
+    imageAlt: 'Healthcare professionals in a hospital',
+  },
+  {
+    title: 'Pharmaceuticals',
+    desc: 'R&D scientists, regulatory affairs, medical affairs, and pharma executives.',
+    image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80',
+    imageAlt: 'Pharmaceutical laboratory research',
+  },
+  {
+    title: 'BFSI',
+    desc: 'Banking, financial services, and insurance professionals from analysts to C-suite.',
+    image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80',
+    imageAlt: 'Banking and financial services desk',
+  },
+  {
+    title: 'Retail & E-commerce',
+    desc: 'Retail operations, supply chain, merchandising, and e-commerce leadership.',
+    image: 'https://images.unsplash.com/photo-1607083206968-13611e3d76db?w=800&q=80',
+    imageAlt: 'Retail and e-commerce inventory operations',
+  },
+  {
+    title: 'Manufacturing',
+    desc: 'Operations, engineering, supply chain, and manufacturing leadership roles.',
+    image: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&q=80',
+    imageAlt: 'Manufacturing plant floor operations',
+  },
+  {
+    title: 'Telecommunications',
+    desc: 'Network engineers, telecom executives, and technology leaders in the telecom sector.',
+    image: 'https://images.unsplash.com/photo-1483478550801-ceba5fe50e8e?w=800&q=80',
+    imageAlt: 'Telecommunications and network operations',
+  },
+  {
+    title: 'Non-IT Services',
+    desc: 'BPO, KPO, consulting, and various service industry roles across functions.',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
+    imageAlt: 'Business analytics and consulting services dashboard',
+  },
+];
+
+const industryEngagementHighlights = [
+  {
+    badge: 'Exec',
+    title: 'Executive & leadership',
+    desc: 'C-suite and senior leadership searches aligned to sector norms, regulation, and organizational culture.',
+    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80',
+    imageAlt: 'Executive leadership across industries',
+  },
+  {
+    badge: 'Vol',
+    title: 'Volume & scale',
+    desc: 'High-volume hiring for technology, operations, and customer-facing roles with consistent quality.',
+    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80',
+    imageAlt: 'Scaling teams across functions',
+  },
+  {
+    badge: 'Mix',
+    title: 'Hybrid engagements',
+    desc: 'Blend executive search with staffing for the same program, geography, or transformation initiative.',
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80',
+    imageAlt: 'Strategic workforce and hiring partnership',
+  },
+];
+
+const navSections = [
+  { id: 'hero', label: 'Home' },
+  { 
+    id: 'executive-search-section', 
+    label: 'Executive Search',
+    subsections: [
+      { id: 'executive-search-section', label: 'Leadership Hiring' },
+      { id: 'executive-search-section', label: 'C-Suite Search' },
+      { id: 'executive-search-section', label: 'Board Positions' },
+    ]
+  },
+  { 
+    id: 'global-staffing-section', 
+    label: 'Global Staffing',
+    subsections: [
+      { id: 'global-staffing-section', label: 'Volume Hiring' },
+      { id: 'global-staffing-section', label: 'Bulk Recruitment' },
+      { id: 'global-staffing-section', label: 'RPO Solutions' },
+    ]
+  },
+  { 
+    id: 'industries-section', 
+    label: 'Industries',
+    subsections: [
+      { id: 'industries-section', label: 'IT & Technology' },
+      { id: 'industries-section', label: 'Healthcare' },
+      { id: 'industries-section', label: 'BFSI' },
+      { id: 'industries-section', label: 'Manufacturing' },
+    ]
+  },
+  { id: 'testimonials-section', label: 'Testimonials' },
+  { id: 'faq-section', label: 'FAQ' },
+];
+---
+
+<PageLayout
+  title={seo.title}
+  description={seo.description}
+  keywords={seo.keywords}
+  canonical={seo.canonical}
+  schema={[executiveSearchSchema, globalStaffingSchema]}
+  pageTitle="HOME"
+  showWoodenHeader={false}
+  navSections={navSections}
+  useScrollNav={true}
+>
+  <section id="hero" class="scroll-section">
+    <Hero
+      title="Global Recruitment & Staffing Solutions"
+      subtitle="Trusted talent partner for startups, enterprises, and multinational organizations. Delivering premium executive search and scalable staffing solutions worldwide."
+      primaryCTA={{
+        text: 'Hire Executive Talent',
+        href: '#executive-search-section',
+      }}
+      secondaryCTA={{
+        text: 'Scale Your Workforce',
+        href: '#global-staffing-section',
+      }}
+      tertiaryCTA={{
+        text: 'Submit Your Resume',
+        href: '/job-seekers',
+      }}
+    />
+  </section>
+
+  <section id="about-section" class="scroll-section about-section">
+    <div class="section-content">
+      <div class="about-strip section-light">
+        <div class="section-header">
+          <p class="about-kicker">About Hire Ritz</p>
+          <h2>Who We Are</h2>
+          <p class="section-lead">
+            Hire Ritz is a consulting and delivery partner for organizations that want technology
+            to create meaningful business impact. We work with decision-makers to solve complex
+            transformation challenges with practical, scalable solutions.
+          </p>
+        </div>
+
+        <div class="section-header about-inner-header">
+          <h3>What We Do</h3>
+          <p class="section-lead">End-to-end technology capabilities to transform and run your business.</p>
+        </div>
+        <div class="services-grid">
+          {aboutWhatWeDoItems.map((item) => (
+            <article class="service-card">
+              <div class="service-card-image-wrap">
+                <img src={item.image} alt={item.imageAlt} class="service-card-image" width="600" height="340" loading="lazy" />
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+            </article>
+          ))}
+        </div>
+
+        <div class="section-header about-inner-header">
+          <h3>Why Clients Choose Hire Ritz</h3>
+          <p class="section-lead">A balanced blend of advisory strength and delivery discipline.</p>
+        </div>
+        <div class="about-diff-grid">
+          {aboutDifferentiators.map((item) => (
+            <article class="about-diff-card">
+              <div class="about-diff-card-image-wrap">
+                <img
+                  src={item.image}
+                  alt={item.imageAlt}
+                  class="about-diff-card-image"
+                  width="800"
+                  height="500"
+                  loading="lazy"
+                />
+              </div>
+              <div class="about-diff-card-body">
+                <h3 class="about-diff-card-title">{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div class="section-header about-inner-header">
+          <h3>Our Engagement Model</h3>
+          <p class="section-lead">A clear, repeatable approach designed for predictable outcomes.</p>
+        </div>
+        <div class="about-engagement-grid" aria-label="Engagement model steps">
+          {aboutEngagementModel.map((item) => (
+            <article class="about-engagement-card">
+              <div class="about-engagement-card-visual">
+                <span class="about-step-badge">{item.step}</span>
+                <img
+                  src={item.image}
+                  alt={item.imageAlt}
+                  class="about-engagement-card-image"
+                  width="800"
+                  height="480"
+                  loading="lazy"
+                />
+              </div>
+              <div class="about-engagement-card-body">
+                <h3 class="about-engagement-card-title">{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div class="about-action">
+          <a href="/#about-section" class="btn btn-secondary">Learn More About Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section id="executive-search-section" class="scroll-section executive-section">
+    <div class="section-content">
+      <div class="about-strip section-light">
+        <div class="section-header">
+          <p class="about-kicker">Executive Search</p>
+          <h2>Executive Search & Leadership Hiring</h2>
+          <p class="section-lead">
+            Premium consultative approach for finding C-suite and senior leadership talent.
+            We combine deep industry expertise with global reach to deliver exceptional executive candidates.
+          </p>
+        </div>
+
+        <div class="executive-hero-visual">
+          <Picture
+            src={executiveHeroImage}
+            formats={['avif', 'webp', 'jpeg']}
+            widths={[720, 1080, 1440]}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 92vw, 980px"
+            alt="Executive leadership meeting with strategic planning discussion"
+            loading="lazy"
+            class="media"
+          />
+        </div>
+
+        <div class="section-header about-inner-header">
+          <h3>Our Approach</h3>
+          <p class="section-lead">Partnership, rigor, and global reach at every stage.</p>
+        </div>
+        <p class="executive-intro-block">
+          Our executive search methodology is built on decades of experience placing senior leaders across
+          industries and geographies. We understand that executive hiring requires more than matching
+          skills—it is about finding leaders who align with your culture, vision, and strategic goals.
+        </p>
+
+        <div class="about-diff-grid">
+          {executiveApproachItems.map((item) => (
+            <article class="about-diff-card">
+              <div class="about-diff-card-image-wrap">
+                {item.isLocal ? (
+                  <Picture
+                    src={item.image}
+                    formats={['avif', 'webp', 'jpeg']}
+                    widths={[480, 720, 960]}
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    alt={item.imageAlt}
+                    loading="lazy"
+                    class="about-diff-card-image"
+                  />
+                ) : (
+                  <img
+                    src={item.image}
+                    alt={item.imageAlt}
+                    class="about-diff-card-image"
+                    width="800"
+                    height="500"
+                    loading="lazy"
+                  />
+                )}
+              </div>
+              <div class="about-diff-card-body">
+                <h3 class="about-diff-card-title">{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div class="section-header about-inner-header">
+          <h3>Leadership Levels We Serve</h3>
+          <p class="section-lead">From the C-suite to director-level leadership across functions.</p>
+        </div>
+        <div class="about-engagement-grid" aria-label="Leadership levels">
+          {executiveRoleLevels.map((item) => (
+            <article class="about-engagement-card">
+              <div class="about-engagement-card-visual">
+                <span class="about-step-badge exec-role-badge">{item.badge}</span>
+                <img
+                  src={item.image}
+                  alt={item.imageAlt}
+                  class="about-engagement-card-image"
+                  width="800"
+                  height="480"
+                  loading="lazy"
+                />
+              </div>
+              <div class="about-engagement-card-body">
+                <h3 class="about-engagement-card-title">{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div class="about-action">
+          <a href="/executive-search" class="btn btn-primary">Explore Executive Search</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section id="global-staffing-section" class="scroll-section staffing-section">
+    <div class="section-content">
+      <div class="about-strip section-light">
+        <div class="section-header">
+          <p class="about-kicker">Global Staffing</p>
+          <h2>Global Staffing & Volume Hiring Solutions</h2>
+          <p class="section-lead">
+            High-volume, scalable staffing solutions designed for fast-growing organizations.
+            Our process-driven approach delivers quality talent at scale across global markets.
+          </p>
+        </div>
+
+        <div class="staffing-hero-visual">
+          <Picture
+            src={staffingHeroImage}
+            formats={['avif', 'webp', 'jpeg']}
+            widths={[720, 1080, 1440]}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 92vw, 980px"
+            alt="Global staffing operations and large scale hiring strategy session"
+            loading="lazy"
+            class="media"
+          />
+        </div>
+
+        <div class="section-header about-inner-header">
+          <h3>Why Choose Our Volume Staffing Services?</h3>
+          <p class="section-lead">Speed, quality, and scale—without compromising candidate experience.</p>
+        </div>
+        <p class="staffing-intro-block">
+          When you need to scale quickly, traditional recruitment methods fall short. Our volume hiring
+          solutions are built for speed, quality, and scale, enabling organizations to build teams of 50,
+          200, or 1000+ professionals efficiently.
+        </p>
+
+        <div class="about-diff-grid">
+          {staffingWhyItems.map((item) => (
+            <article class="about-diff-card">
+              <div class="about-diff-card-image-wrap">
+                {item.isLocal ? (
+                  <Picture
+                    src={item.image}
+                    formats={['avif', 'webp', 'jpeg']}
+                    widths={[480, 720, 960]}
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    alt={item.imageAlt}
+                    loading="lazy"
+                    class="about-diff-card-image"
+                  />
+                ) : (
+                  <img
+                    src={item.image}
+                    alt={item.imageAlt}
+                    class="about-diff-card-image"
+                    width="800"
+                    height="500"
+                    loading="lazy"
+                  />
+                )}
+              </div>
+              <div class="about-diff-card-body">
+                <h3 class="about-diff-card-title">{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div class="section-header about-inner-header">
+          <h3>How We Engage</h3>
+          <p class="section-lead">Flexible models aligned to your hiring volume and timeline.</p>
+        </div>
+        <div class="about-engagement-grid" aria-label="Staffing engagement models">
+          {staffingDeliveryModels.map((item) => (
+            <article class="about-engagement-card">
+              <div class="about-engagement-card-visual">
+                <span class="about-step-badge exec-role-badge">{item.badge}</span>
+                <img
+                  src={item.image}
+                  alt={item.imageAlt}
+                  class="about-engagement-card-image"
+                  width="800"
+                  height="480"
+                  loading="lazy"
+                />
+              </div>
+              <div class="about-engagement-card-body">
+                <h3 class="about-engagement-card-title">{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div class="about-action">
+          <a href="/global-staffing" class="btn btn-primary">Explore Global Staffing</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section id="industries-section" class="scroll-section industries-section">
+    <div class="section-content">
+      <div class="about-strip section-light">
+        <div class="section-header">
+          <p class="about-kicker">Industries</p>
+          <h2>Industries We Serve</h2>
+          <p class="section-lead">
+            Deep industry expertise helps us understand your talent requirements and deliver candidates
+            who fit your organization—from regulated sectors to fast-moving technology and services.
+          </p>
+        </div>
+
+        <div class="industries-hero-visual">
+          <img
+            src={industriesHero.src}
+            alt={industriesHero.alt}
+            width="1440"
+            height="600"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="section-header about-inner-header">
+          <h3>Sectors & verticals</h3>
+          <p class="section-lead">Specialist coverage across the industries where we place talent every day.</p>
+        </div>
+        <p class="industries-intro-block">
+          Whether you need niche technical skills, regulated-market experience, or leadership for scale,
+          our consultants bring sector context to every search and staffing program.
+        </p>
+
+        <div class="about-diff-grid">
+          {industriesVerticals.map((item) => (
+            <article class="about-diff-card">
+              <div class="about-diff-card-image-wrap">
+                <img
+                  src={item.image}
+                  alt={item.imageAlt}
+                  class="about-diff-card-image"
+                  width="800"
+                  height="500"
+                  loading="lazy"
+                />
+              </div>
+              <div class="about-diff-card-body">
+                <h3 class="about-diff-card-title">{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div class="section-header about-inner-header">
+          <h3>How we partner by industry</h3>
+          <p class="section-lead">Executive search, volume hiring, or a blended model—aligned to your goals.</p>
+        </div>
+        <div class="about-engagement-grid" aria-label="Industry hiring models">
+          {industryEngagementHighlights.map((item) => (
+            <article class="about-engagement-card">
+              <div class="about-engagement-card-visual">
+                <span class="about-step-badge exec-role-badge">{item.badge}</span>
+                <img
+                  src={item.image}
+                  alt={item.imageAlt}
+                  class="about-engagement-card-image"
+                  width="800"
+                  height="480"
+                  loading="lazy"
+                />
+              </div>
+              <div class="about-engagement-card-body">
+                <h3 class="about-engagement-card-title">{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div class="about-action">
+          <a href="/industries" class="btn btn-primary">Explore Industries</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section id="testimonials-section" class="scroll-section testimonials-strip-section">
+    <div class="section-content">
+      <div class="about-strip section-light">
+        <div class="section-header">
+          <p class="about-kicker">Testimonials</p>
+          <h2>What Our Clients Say</h2>
+          <p class="section-lead">
+            Trusted feedback from leaders who partner with us for executive search, volume staffing, and global
+            hiring programs.
+          </p>
+        </div>
+
+        <div class="testimonials-hero-visual">
+          <Picture
+            src={executiveHeroImage}
+            formats={['avif', 'webp', 'jpeg']}
+            widths={[720, 1080, 1440]}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 92vw, 980px"
+            alt="Partnership and collaboration in executive hiring"
+            loading="lazy"
+            class="media"
+          />
+        </div>
+
+        <p class="testimonials-intro-block">
+          Real outcomes from HR leaders and hiring teams across technology, financial services, retail, telecom,
+          and global operations.
+        </p>
+
+        <Testimonials embedded />
+
+        <div class="about-action">
+          <a href="/contact" class="btn btn-secondary">Discuss your hiring goals</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section id="faq-section" class="scroll-section faq-strip-section">
+    <div class="section-content">
+      <div class="about-strip section-light">
+        <div class="section-header">
+          <p class="about-kicker">FAQ</p>
+          <h2>Frequently Asked Questions</h2>
+          <p class="section-lead">
+            Quick answers about executive search, volume staffing, regions, timelines, and how we partner with
+            clients and candidates.
+          </p>
+        </div>
+
+        <div class="faq-hero-visual">
+          <Picture
+            src={staffingHeroImage}
+            formats={['avif', 'webp', 'jpeg']}
+            widths={[720, 1080, 1440]}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 92vw, 980px"
+            alt="Team discussing hiring strategy and workforce planning"
+            loading="lazy"
+            class="media"
+          />
+        </div>
+
+        <p class="faq-intro-block">
+          Tap a question to expand the answer. For anything else, our team is happy to help.
+        </p>
+
+        <FAQ embedded faqs={homeFAQs} />
+
+        <div class="about-action">
+          <a href="/contact" class="btn btn-secondary">Ask a question</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact-section" class="scroll-section contact-strip-section">
+    <div class="section-content">
+      <div class="about-strip section-light">
+        <div class="section-header">
+          <p class="about-kicker">Contact</p>
+          <h2>Get in touch</h2>
+          <p class="section-lead">
+            Share your hiring needs, timelines, and regions—we respond promptly and route you to the right
+            consultants.
+          </p>
+        </div>
+
+        <div class="contact-hero-visual">
+          <Picture
+            src={executiveGlobalImage}
+            formats={['avif', 'webp', 'jpeg']}
+            widths={[720, 1080, 1440]}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 92vw, 980px"
+            alt="Global reach and partnership for recruitment"
+            loading="lazy"
+            class="media"
+          />
+        </div>
+
+        <p class="contact-intro-block">
+          Use the form for detailed inquiries, or reach us by email or phone. We support clients and candidates
+          across India, North America, Europe, the Middle East, and APAC.
+        </p>
+
+        <ContactContent embedded />
+
+        <div class="about-action">
+          <a href="mailto:contact@hireritz.com" class="btn btn-secondary">Email us directly</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .scroll-section {
+    min-height: 100vh;
+    scroll-margin-top: calc(var(--header-height) + var(--spacing-md));
+    padding: var(--spacing-2xl) 0;
+    position: relative;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  #global-staffing-section {
+    padding-bottom: var(--spacing-md);
+  }
+
+  #industries-section {
+    padding-top: var(--spacing-md);
+  }
+
+  .about-section {
+    min-height: auto;
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+  }
+
+  .executive-section,
+  .staffing-section,
+  .industries-section,
+  .testimonials-strip-section,
+  .faq-strip-section,
+  .contact-strip-section {
+    min-height: auto;
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+  }
+
+  .executive-intro-block,
+  .staffing-intro-block,
+  .industries-intro-block,
+  .testimonials-intro-block,
+  .faq-intro-block,
+  .contact-intro-block {
+    text-align: center;
+    max-width: 42rem;
+    margin: 0 auto var(--spacing-xl);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-light);
+  }
+
+  .executive-section .about-strip .executive-hero-visual,
+  .staffing-section .about-strip .staffing-hero-visual,
+  .industries-section .about-strip .industries-hero-visual,
+  .testimonials-strip-section .about-strip .testimonials-hero-visual,
+  .faq-strip-section .about-strip .faq-hero-visual,
+  .contact-strip-section .about-strip .contact-hero-visual {
+    margin-top: 0;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .exec-role-badge {
+    min-width: 2.25rem;
+    padding: 0 var(--spacing-sm);
+    font-size: var(--font-size-xs);
+    letter-spacing: 0.06em;
+  }
+
+  .about-strip {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-2xl);
+  }
+
+  .about-strip .section-header {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .about-strip .section-header.about-inner-header {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .about-strip .section-header.about-inner-header h3 {
+    margin-top: 0;
+  }
+
+  /* Grids follow headers — avoid doubling header margin + grid margin */
+  .about-strip .services-grid,
+  .about-diff-grid,
+  .about-engagement-grid {
+    margin-top: 0;
+    width: 100%;
+  }
+
+  .about-diff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: var(--spacing-xl);
+  }
+
+  .about-diff-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    background: linear-gradient(180deg, var(--color-surface-elevated) 0%, var(--color-surface) 100%);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-base), transform var(--transition-base), border-color var(--transition-base);
+  }
+
+  .about-diff-card:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-primary-light);
+    transform: translateY(-4px);
+  }
+
+  .about-diff-card-image-wrap {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    margin: 0;
+    background: var(--color-bg-light);
+  }
+
+  .about-diff-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--transition-slow);
+  }
+
+  .about-diff-card:hover .about-diff-card-image {
+    transform: scale(1.04);
+  }
+
+  .about-diff-card-body {
+    padding: var(--spacing-xl) var(--spacing-2xl) var(--spacing-2xl);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .about-diff-card-title {
+    margin: 0 0 var(--spacing-sm);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    line-height: 1.3;
+  }
+
+  .about-diff-card-body p {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-light);
+  }
+
+  .about-engagement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    gap: var(--spacing-xl);
+    align-items: stretch;
+  }
+
+  .about-engagement-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-base), transform var(--transition-base);
+  }
+
+  .about-engagement-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+  }
+
+  .about-engagement-card-visual {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: linear-gradient(145deg, #0f4c81 0%, #1a6cb8 50%, #0d3d5c 100%);
+  }
+
+  .about-engagement-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0.92;
+    transition: opacity var(--transition-base), transform var(--transition-slow);
+  }
+
+  .about-engagement-card:hover .about-engagement-card-image {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+
+  .about-step-badge {
+    position: absolute;
+    top: var(--spacing-md);
+    left: var(--spacing-md);
+    z-index: 2;
+    min-width: 2.75rem;
+    height: 2.75rem;
+    padding: 0 var(--spacing-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.02em;
+    color: white;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+  }
+
+  .about-engagement-card-body {
+    padding: var(--spacing-lg) var(--spacing-xl) var(--spacing-xl);
+    flex: 1;
+  }
+
+  .about-engagement-card-title {
+    margin: 0 0 var(--spacing-sm);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+  }
+
+  .about-engagement-card-body p {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-light);
+  }
+
+  .about-inner-header {
+    text-align: center;
+  }
+
+  .about-action {
+    margin-top: var(--spacing-xl);
+    text-align: center;
+  }
+
+  .about-kicker {
+    margin: 0 0 var(--spacing-sm);
+    font-size: var(--font-size-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .about-strip h2 {
+    margin-top: 0;
+    margin-bottom: var(--spacing-md);
+  }
+
+  /* Intro / header copy only — do not override .service-card p / .content-card p */
+  .about-strip > .section-header:first-child .section-lead {
+    max-width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #testimonials-section {
+    padding-top: var(--spacing-sm);
+  }
+
+  /* Keep testimonial anchor landing tighter so content is visible immediately */
+  #testimonials-section {
+    scroll-margin-top: calc(var(--header-height) + var(--spacing-sm));
+    padding-top: var(--spacing-md);
+    /* Allow horizontal scroll area for testimonial carousel (nested overflow) */
+    overflow-x: visible;
+  }
+  
+  .scroll-section:first-of-type {
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+  }
+  
+  .scroll-section:first-of-type :global(.hero) {
+    position: relative;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 100vw !important;
+    margin-left: calc(-50vw + 50%) !important;
+    margin-right: calc(-50vw + 50%) !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+  }
+  
+  .section-content {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-2xl);
+  }
+  
+  .page-subtitle {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-light);
+    max-width: 800px;
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-2xl);
+  }
+  
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2xl);
+    margin-top: var(--spacing-2xl);
+  }
+  
+  .content-main h2 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .content-main h3 {
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .content-main ul {
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .content-main li {
+    margin-bottom: var(--spacing-sm);
+    line-height: var(--line-height-relaxed);
+  }
+  
+  .executive-hero-visual,
+  .staffing-hero-visual,
+  .industries-hero-visual,
+  .testimonials-hero-visual,
+  .faq-hero-visual,
+  .contact-hero-visual {
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .executive-hero-visual :global(img),
+  .staffing-hero-visual :global(img),
+  .industries-hero-visual img,
+  .testimonials-hero-visual :global(img),
+  .faq-hero-visual :global(img),
+  .contact-hero-visual :global(img) {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    display: block;
+  }
+  
+  @media (max-width: 768px) {
+    .scroll-section {
+      min-height: auto;
+      padding: var(--spacing-xl) 0;
+    }
+
+    #testimonials-section {
+      scroll-margin-top: calc(var(--header-height-mobile) + var(--spacing-sm));
+      padding-top: var(--spacing-sm);
+    }
+
+    #global-staffing-section {
+      padding-bottom: var(--spacing-sm);
+    }
+
+    #industries-section {
+      padding-top: var(--spacing-sm);
+    }
+
+    .about-strip {
+      padding: var(--spacing-xl);
+    }
+
+    #testimonials-section {
+      padding-top: var(--spacing-xs);
+    }
+    
+    .executive-hero-visual :global(img),
+    .staffing-hero-visual :global(img),
+    .industries-hero-visual img,
+    .testimonials-hero-visual :global(img),
+    .faq-hero-visual :global(img),
+    .contact-hero-visual :global(img) {
+      height: 240px;
+    }
+  }
+
+</style>

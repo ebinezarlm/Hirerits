@@ -1,0 +1,207 @@
+---
+const regions = [
+  { name: 'India', code: 'IN' },
+  { name: 'North America', code: 'NA' },
+  { name: 'Europe', code: 'EU' },
+  { name: 'Middle East', code: 'ME' },
+  { name: 'APAC', code: 'APAC' },
+];
+
+const serviceLinks = [
+  { href: '/#services', label: 'Digital Transformation' },
+  { href: '/executive-search', label: 'Solutions' },
+  { href: '/industries', label: 'Industries' },
+];
+
+const companyLinks = [
+  { href: '/#about-section', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+  { href: '/employers', label: 'For Employers' },
+  { href: '/job-seekers', label: 'Careers' },
+];
+
+const legalLinks = [
+  { href: '/privacy-policy', label: 'Privacy Policy' },
+  { href: '/terms', label: 'Terms & Conditions' },
+];
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3 class="footer-title">Hire Ritz</h3>
+        <p class="footer-description">
+          IT consultancy partner for enterprises worldwide. We deliver digital transformation,
+          cloud solutions, software development, and technology strategy that drive results.
+        </p>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/company/hireritz" aria-label="LinkedIn" class="social-link">
+            LinkedIn
+          </a>
+          <a href="https://twitter.com/hireritz" aria-label="Twitter" class="social-link">
+            Twitter
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-col">
+        <h4 class="footer-heading">Services</h4>
+        <ul class="footer-links">
+          {serviceLinks.map((link) => (
+            <li>
+              <a href={link.href}>{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4 class="footer-heading">Company</h4>
+        <ul class="footer-links">
+          {companyLinks.map((link) => (
+            <li>
+              <a href={link.href}>{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4 class="footer-heading">Global Presence</h4>
+        <ul class="footer-links">
+          {regions.map((region) => (
+            <li>
+              <span>{region.name}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4 class="footer-heading">Legal</h4>
+        <ul class="footer-links">
+          {legalLinks.map((link) => (
+            <li>
+              <a href={link.href}>{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p class="footer-copyright">
+        &copy; {new Date().getFullYear()} Hire Ritz. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background:
+      radial-gradient(circle at 15% 12%, rgba(14, 165, 233, 0.2), transparent 32%),
+      linear-gradient(160deg, #06101f 0%, #0b1320 45%, #111b2f 100%);
+    color: var(--color-text-light);
+    padding: var(--section-padding-y) 0 var(--spacing-2xl);
+    margin-top: 0;
+  }
+  
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-3xl);
+    margin-bottom: var(--spacing-3xl);
+  }
+  
+  .footer-title {
+    color: var(--color-bg);
+    font-family: var(--font-display);
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .footer-description {
+    color: var(--color-text-lighter);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-lg);
+    line-height: var(--line-height-relaxed);
+  }
+  
+  .footer-heading {
+    color: var(--color-bg);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-links li {
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .footer-links a {
+    color: var(--color-text-lighter);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    transition: color var(--transition-fast), transform var(--transition-fast);
+  }
+  
+  .footer-links a:hover {
+    color: #dbeafe;
+    text-decoration: none;
+    transform: translateX(2px);
+  }
+  
+  .footer-links span {
+    color: var(--color-text-lighter);
+    font-size: var(--font-size-sm);
+  }
+  
+  .footer-social {
+    display: flex;
+    gap: var(--spacing-md);
+  }
+  
+  .social-link {
+    color: var(--color-text-lighter);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border: 1px solid rgba(203, 213, 225, 0.25);
+    border-radius: var(--radius-full);
+    transition: all var(--transition-fast);
+  }
+  
+  .social-link:hover {
+    color: white;
+    border-color: rgba(219, 234, 254, 0.6);
+    background: rgba(219, 234, 254, 0.08);
+    text-decoration: none;
+  }
+  
+  .footer-bottom {
+    border-top: 1px solid var(--color-border-dark);
+    padding-top: var(--spacing-lg);
+    text-align: center;
+  }
+  
+  .footer-copyright {
+    color: var(--color-text-lighter);
+    font-size: var(--font-size-sm);
+    margin: 0;
+  }
+  
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-xl);
+    }
+  }
+</style>

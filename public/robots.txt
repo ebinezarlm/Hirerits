@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://hireritz.com/sitemap.xml
+
+# Disallow admin or private paths if any
+# Disallow: /admin/
+# Disallow: /private/

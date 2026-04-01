@@ -1,0 +1,201 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+import { generateArticleSchema, generateBreadcrumbSchema } from '../../utils/schema';
+
+export async function getStaticPaths() {
+  const blogPosts = await getCollection('blog');
+  return blogPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const seo = {
+  title: post.data.title,
+  description: post.data.description,
+  keywords: post.data.tags.join(', '),
+  canonical: `/blog/${post.slug}`,
+  ogImage: post.data.image,
+};
+
+const articleSchema = generateArticleSchema({
+  headline: post.data.title,
+  description: post.data.description,
+  image: post.data.image,
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: post.data.updatedDate?.toISOString() || post.data.pubDate.toISOString(),
+  author: post.data.author,
+  url: `https://hireritz.com/blog/${post.slug}`,
+});
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: 'https://hireritz.com/' },
+  { name: 'Insights', url: 'https://hireritz.com/blog' },
+  { name: post.data.title, url: `https://hireritz.com/blog/${post.slug}` },
+]);
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  keywords={seo.keywords}
+  canonical={seo.canonical}
+  ogImage={seo.ogImage}
+  ogType="article"
+  schema={[articleSchema, breadcrumbSchema]}
+>
+  <main id="main-content">
+    <article class="blog-post">
+      <header class="blog-header">
+        <div class="container">
+          <nav aria-label="Breadcrumb" class="breadcrumb">
+            <a href="/">Home</a> / <a href="/blog">Insights</a> / <span>{post.data.title}</span>
+          </nav>
+          
+          <h1>{post.data.title}</h1>
+          
+          <div class="blog-meta">
+            <time datetime={post.data.pubDate.toISOString()}>
+              {post.data.pubDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </time>
+            <span>By {post.data.author}</span>
+            {post.data.tags.length > 0 && (
+              <div class="blog-tags">
+                {post.data.tags.map((tag) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+            )}
+          </div>
+          
+          {post.data.image && (
+            <img
+              src={post.data.image}
+              alt={post.data.title}
+              class="blog-featured-image"
+              loading="eager"
+            />
+          )}
+        </div>
+      </header>
+      
+      <div class="blog-content">
+        <div class="container">
+          <Content />
+        </div>
+      </div>
+    </article>
+  </main>
+  
+  <Footer />
+</BaseLayout>
+
+<style>
+  .blog-header {
+    padding: var(--spacing-4xl) 0 var(--spacing-2xl);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    color: white;
+  }
+  
+  .blog-header h1 {
+    color: white;
+    font-size: var(--font-size-5xl);
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .breadcrumb {
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-sm);
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .breadcrumb a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+  }
+  
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+  
+  .blog-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    font-size: var(--font-size-sm);
+    color: rgba(255, 255, 255, 0.9);
+    flex-wrap: wrap;
+  }
+  
+  .blog-tags {
+    display: flex;
+    gap: var(--spacing-xs);
+    flex-wrap: wrap;
+  }
+  
+  .tag {
+    padding: 4px var(--spacing-sm);
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+  }
+  
+  .blog-featured-image {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: var(--radius-lg);
+    margin-top: var(--spacing-xl);
+  }
+  
+  .blog-content {
+    padding: var(--spacing-4xl) 0;
+  }
+  
+  .blog-content :global(h2) {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .blog-content :global(h3) {
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .blog-content :global(p) {
+    margin-bottom: var(--spacing-md);
+    line-height: var(--line-height-relaxed);
+  }
+  
+  .blog-content :global(ul),
+  .blog-content :global(ol) {
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .blog-content :global(li) {
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  .blog-content :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    margin: var(--spacing-lg) 0;
+  }
+  
+  @media (max-width: 768px) {
+    .blog-header h1 {
+      font-size: var(--font-size-3xl);
+    }
+  }
+</style>

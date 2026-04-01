@@ -1,0 +1,52 @@
+---
+import TestimonialsMarquee from './TestimonialsMarquee.astro';
+
+interface Props {
+  title?: string;
+  limit?: number;
+  embedded?: boolean;
+}
+
+const { title = 'What Our Clients Say', limit, embedded = false } = Astro.props;
+---
+
+{
+  embedded ? (
+    <div class="testimonials-embed" role="region" aria-label="Client testimonials">
+      <TestimonialsMarquee limit={limit} />
+    </div>
+  ) : (
+    <section class="testimonials-section">
+      <div class="container">
+        <h2 class="testimonials-title">{title}</h2>
+        <TestimonialsMarquee limit={limit} />
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .testimonials-section {
+    padding: var(--spacing-md) 0 var(--spacing-xl);
+    background: var(--color-bg-light);
+  }
+
+  .testimonials-title {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .testimonials-embed {
+    width: 100%;
+    min-height: 24rem;
+  }
+
+  .testimonials-embed :global(.testimonials-marquee) {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .testimonials-embed :global(.testimonials-marquee-wrap) {
+    min-height: 22rem;
+  }
+</style>

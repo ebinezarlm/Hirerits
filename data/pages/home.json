@@ -1,0 +1,53 @@
+{
+  "seo": {
+    "title": "IT Consultancy Services | Digital Transformation & Technology Solutions",
+    "description": "Leading IT consultancy delivering digital transformation, cloud solutions, software development, and technology strategy for enterprises worldwide.",
+    "keywords": "IT consultancy, digital transformation, cloud solutions, software development, technology consulting, enterprise IT"
+  },
+  "hero": {
+    "title": "IT Consultancy That Drives Results",
+    "subtitle": "We help enterprises transform with technology—strategy, cloud, software, and security. Partner with experts who deliver.",
+    "backgroundImage": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=85",
+    "primaryCTA": { "text": "Get in Touch", "href": "/contact" },
+    "secondaryCTA": { "text": "Our Services", "href": "#services" }
+  },
+  "services": {
+    "title": "Our Services",
+    "lead": "End-to-end IT consultancy to accelerate your business.",
+    "items": [
+      { "title": "Digital Transformation", "description": "Strategy, roadmap, and execution to modernize operations and customer experiences with the right technology.", "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80", "imageAlt": "Digital transformation and strategy" },
+      { "title": "Cloud & Infrastructure", "description": "Cloud migration, hybrid cloud, and infrastructure optimization on AWS, Azure, and GCP for scale and resilience.", "image": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80", "imageAlt": "Cloud and infrastructure" },
+      { "title": "Software Development", "description": "Custom applications, product development, and modern engineering practices to build and evolve your digital products.", "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&q=80", "imageAlt": "Software development" },
+      { "title": "Cybersecurity", "description": "Security assessment, compliance, and implementation of controls to protect your data and systems.", "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&q=80", "imageAlt": "Cybersecurity and data protection" },
+      { "title": "Data & Analytics", "description": "Data strategy, engineering, and analytics to turn data into decisions and competitive advantage.", "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80", "imageAlt": "Data and analytics" },
+      { "title": "Managed IT Support", "description": "24/7 help desk, proactive monitoring, patch management, and guaranteed SLAs so your business runs without interruption.", "image": "https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&q=80", "imageAlt": "Managed IT support and help desk" }
+    ]
+  },
+  "whyPartner": {
+    "title": "Why Partner With Us",
+    "lead": "We combine deep technical expertise with a focus on business outcomes.",
+    "items": [
+      { "title": "Strategy first", "description": "Every engagement starts with understanding your goals. We align technology with business strategy so investments deliver measurable value.", "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80", "imageAlt": "Strategy and planning" },
+      { "title": "Global delivery, local touch", "description": "We serve clients across regions with onshore and offshore delivery, ensuring quality, communication, and agility.", "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80", "imageAlt": "Global team collaboration" },
+      { "title": "Proven methods", "description": "We use industry-standard practices and our own playbooks to reduce risk and deliver on time and on budget.", "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=80", "imageAlt": "Proven processes and methods" },
+      { "title": "Long-term partnership", "description": "We're invested in your success beyond the project—through support, training, and continuous improvement.", "image": "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&q=80", "imageAlt": "Partnership and collaboration" }
+    ]
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      { "question": "What IT consultancy services do you offer?", "answer": "We provide end-to-end IT consultancy including digital transformation, cloud migration, custom software development, cybersecurity, and data & analytics. Our experts help you align technology with business goals." },
+      { "question": "Which industries do you serve?", "answer": "We work across sectors including financial services, healthcare, retail, manufacturing, and technology. Our teams bring deep domain knowledge alongside technical excellence." },
+      { "question": "How do you approach digital transformation?", "answer": "We start with strategy and discovery, then design and implement solutions in phases. We focus on measurable outcomes, change management, and building capabilities that last." },
+      { "question": "Do you offer ongoing support?", "answer": "Yes. We provide managed services, support retainers, and continuous improvement engagements so your systems and teams keep performing at their best." },
+      { "question": "What are your IT support hours and response times?", "answer": "We offer 24/7 help desk support. Our SLAs guarantee response within 15 minutes for critical issues, 2 hours for high priority, and 4 hours for standard requests. Enterprise clients get a dedicated account team." },
+      { "question": "How do I report an urgent technical issue?", "answer": "Existing clients can call our support line 24/7 or email support@hireritz.com. For new inquiries, use the contact form and select \"IT Support\" to open a ticket. Critical outages are prioritized immediately." }
+    ]
+  },
+  "cta": {
+    "title": "Ready to Transform Your Technology?",
+    "description": "Talk to our team about your goals. We'll help you choose the right path and get started.",
+    "primaryCTA": { "text": "Contact Us", "href": "/contact" },
+    "secondaryCTA": { "text": "Explore Services", "href": "#services" }
+  }
+}

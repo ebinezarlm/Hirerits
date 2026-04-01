@@ -1,0 +1,314 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CTASection from '../components/CTASection.astro';
+import { generateServiceSchema, generateBreadcrumbSchema } from '../utils/schema';
+
+const seo = {
+  title: 'Global Staffing & Volume Hiring Solutions',
+  description: 'High-volume, scalable staffing solutions for fast-growing organizations. Process-driven bulk hiring with speed, quality, and global delivery across multiple regions.',
+  keywords: 'volume hiring, bulk staffing, global staffing solutions, scalable recruitment, high-volume hiring, staffing services',
+  canonical: '/global-staffing',
+};
+
+const serviceSchema = generateServiceSchema({
+  name: 'Global Staffing & Volume Hiring',
+  description: seo.description,
+  provider: {
+    name: 'Hire Ritz',
+    url: 'https://hireritz.com',
+  },
+  areaServed: ['India', 'North America', 'Europe', 'Middle East', 'APAC'],
+  serviceType: 'Volume Recruitment',
+});
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: 'https://hireritz.com/' },
+  { name: 'Global Staffing', url: 'https://hireritz.com/global-staffing' },
+]);
+---
+
+<PageLayout
+  title={seo.title}
+  description={seo.description}
+  keywords={seo.keywords}
+  canonical={seo.canonical}
+  schema={[serviceSchema, breadcrumbSchema]}
+>
+  <PageHero
+    title="Global Staffing & Volume Hiring Solutions"
+    lead="High-volume, scalable staffing solutions designed for fast-growing organizations. Our process-driven approach delivers quality talent at scale across global markets."
+    image="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80"
+    imageAlt="Global team and staffing"
+  />
+
+  <section class="section section-light">
+    <div class="container">
+        <div class="content-grid">
+          <div class="content-main">
+            <h2>Scalable Staffing for Growing Organizations</h2>
+            <p>
+              When you need to scale quickly, traditional recruitment methods fall short. 
+              Our volume hiring solutions are built for speed, quality, and scale, enabling 
+              organizations to build teams of 50, 200, or 1000+ professionals efficiently.
+            </p>
+            
+            <h3>Why Choose Our Volume Staffing Services?</h3>
+            <ul>
+              <li><strong>Process-Driven Excellence:</strong> Standardized, repeatable processes that ensure consistency and quality at scale.</li>
+              <li><strong>Speed to Market:</strong> Rapid candidate sourcing, screening, and placement to meet aggressive hiring timelines.</li>
+              <li><strong>Global Talent Pool:</strong> Access to candidates across India, North America, Europe, Middle East, and APAC.</li>
+              <li><strong>Technology-Enabled:</strong> Leveraging ATS, automation, and data-driven insights for efficient hiring.</li>
+              <li><strong>Quality Assurance:</strong> Multi-stage screening and validation to ensure candidate quality.</li>
+              <li><strong>Scalable Operations:</strong> Dedicated teams that can ramp up or down based on your hiring needs.</li>
+            </ul>
+            
+            <h3>Our Volume Hiring Process</h3>
+            <div class="process-steps">
+              <div class="process-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <h4>Requirements Analysis</h4>
+                  <p>Deep dive into role requirements, skills, experience levels, and hiring volumes.</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <h4>Talent Sourcing</h4>
+                  <p>Multi-channel sourcing including job boards, social media, referrals, and our global network.</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <h4>Screening & Assessment</h4>
+                  <p>Efficient screening processes including resume review, phone screens, and technical assessments.</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                  <h4>Client Interviews</h4>
+                  <p>Coordinated interview scheduling and feedback collection.</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                  <h4>Offer & Onboarding</h4>
+                  <p>Offer management, negotiation support, and smooth onboarding assistance.</p>
+                </div>
+              </div>
+            </div>
+            
+            <h3>Industries & Roles</h3>
+            <p>
+              We handle volume hiring across multiple industries and role types, from 
+              technical positions to customer-facing roles.
+            </p>
+            <div class="roles-grid">
+              <div class="role-item">Software Engineers</div>
+              <div class="role-item">Sales Representatives</div>
+              <div class="role-item">Customer Support</div>
+              <div class="role-item">Data Analysts</div>
+              <div class="role-item">Marketing Specialists</div>
+              <div class="role-item">Operations Staff</div>
+              <div class="role-item">Healthcare Professionals</div>
+              <div class="role-item">Finance & Accounting</div>
+            </div>
+            
+            <h3>Global Delivery Capabilities</h3>
+            <p>
+              Our volume staffing solutions span across key global markets, enabling 
+              organizations to build distributed teams efficiently.
+            </p>
+            <ul>
+              <li><strong>India:</strong> Large talent pool across IT, BPO, and services sectors</li>
+              <li><strong>North America:</strong> US and Canada coverage for local and remote roles</li>
+              <li><strong>Europe:</strong> Pan-European staffing across multiple countries</li>
+              <li><strong>Middle East:</strong> GCC region coverage for regional and expat talent</li>
+              <li><strong>APAC:</strong> Southeast Asia, Australia, and broader APAC markets</li>
+            </ul>
+          </div>
+          
+          <aside class="content-sidebar">
+            <div class="sidebar-card">
+              <h3>Scale Your Team</h3>
+              <p>Ready to build your workforce at scale?</p>
+              <a href="/contact" class="btn btn-primary w-full">
+                Request Quote
+              </a>
+            </div>
+            
+            <div class="sidebar-card">
+              <h3>Related Services</h3>
+              <ul class="sidebar-links">
+                <li><a href="/executive-search">Executive Search</a></li>
+                <li><a href="/industries">Industries We Serve</a></li>
+                <li><a href="/employers">For Employers</a></li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+  <CTASection
+    title="Ready to Scale Your Workforce?"
+    description="Let's discuss your volume hiring needs and how we can help you build your team efficiently."
+    primaryCTA={{
+      text: 'Get Started',
+      href: '/contact',
+    }}
+  />
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .page-subtitle {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-light);
+    max-width: 800px;
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-2xl);
+  }
+  
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: var(--spacing-2xl);
+  }
+  
+  .content-main h2 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .content-main h3 {
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .content-main ul {
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .content-main li {
+    margin-bottom: var(--spacing-sm);
+    line-height: var(--line-height-relaxed);
+  }
+  
+  .process-steps {
+    margin: var(--spacing-2xl) 0;
+  }
+  
+  .process-step {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    align-items: flex-start;
+  }
+  
+  .step-number {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+  }
+  
+  .step-content h4 {
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-primary);
+  }
+  
+  .step-content p {
+    margin: 0;
+    color: var(--color-text-light);
+  }
+  
+  .roles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin: var(--spacing-lg) 0;
+  }
+  
+  .role-item {
+    padding: var(--spacing-md);
+    background: var(--color-bg-light);
+    border-radius: var(--radius-md);
+    text-align: center;
+    font-weight: var(--font-weight-medium);
+    border: 1px solid var(--color-border);
+  }
+  
+  .content-sidebar {
+    position: sticky;
+    top: calc(var(--header-height) + var(--spacing-lg));
+    align-self: start;
+  }
+  
+  .sidebar-card {
+    background: var(--color-bg-light);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .sidebar-card h3 {
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-lg);
+  }
+  
+  .sidebar-card p {
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-sm);
+  }
+  
+  .sidebar-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar-links li {
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .sidebar-links a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  
+  .sidebar-links a:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 968px) {
+    .content-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .content-sidebar {
+      position: static;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .page-subtitle {
+      font-size: var(--font-size-lg);
+    }
+  }
+</style>

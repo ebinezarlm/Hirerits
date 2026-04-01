@@ -1,0 +1,117 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  keywords?: string;
+  noindex?: boolean;
+  schema?: object[];
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage,
+  keywords,
+  noindex,
+  schema,
+} = Astro.props;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  ogImage={ogImage}
+  keywords={keywords}
+  noindex={noindex}
+  schema={schema}
+>
+  <div class="business-layout">
+    <main class="main-content" id="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>
+
+<style>
+  .business-layout {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main-content {
+    flex: 1;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .main-content :global(h1) {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--spacing-xl);
+    color: var(--color-text);
+    line-height: 1.2;
+  }
+
+  .main-content :global(h2) {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-text);
+  }
+
+  .main-content :global(h3) {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text);
+  }
+
+  .main-content :global(p) {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .main-content :global(ul),
+  .main-content :global(ol) {
+    margin-bottom: var(--spacing-xl);
+    padding-left: var(--spacing-2xl);
+  }
+
+  .main-content :global(li) {
+    margin-bottom: var(--spacing-sm);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-light);
+  }
+
+  .main-content :global(.hero) {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  @media (max-width: 768px) {
+    .main-content :global(h1) {
+      font-size: var(--font-size-3xl);
+    }
+  }
+</style>

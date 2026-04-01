@@ -1,0 +1,161 @@
+---
+import metricsData from '../data/metrics.json';
+
+const metrics = [
+  { label: 'Clients Served', value: metricsData.clientsServed, suffix: '+', image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&q=80', imageAlt: 'Clients and partnership' },
+  { label: 'Projects Delivered', value: metricsData.projectsDelivered ?? metricsData.placementsMade, suffix: '+', image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&q=80', imageAlt: 'Projects delivered' },
+  { label: 'Countries', value: metricsData.countriesServed, suffix: '+', image: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=400&q=80', imageAlt: 'Global presence' },
+  { label: 'Industries', value: metricsData.industriesCovered, suffix: '', image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400&q=80', imageAlt: 'Industries we serve' },
+  { label: 'Years Experience', value: metricsData.yearsExperience, suffix: '+', image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&q=80', imageAlt: 'Experience and expertise' },
+];
+---
+
+<section class="metrics-section">
+  <div class="container">
+    <div class="metrics-grid">
+      {metrics.map((metric) => (
+        <div class="metric-card" data-target={metric.value}>
+          <div class="metric-card-image-wrap">
+            <img src={metric.image} alt={metric.imageAlt} class="metric-card-image" width="400" height="225" loading="lazy" />
+          </div>
+          <div class="metric-value">
+            <span class="metric-number">0</span>
+            {metric.suffix && <span class="metric-suffix">{metric.suffix}</span>}
+          </div>
+          <p class="metric-label">{metric.label}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  function animateCounter(element: HTMLElement, target: number, duration: number = 2000) {
+    let start = 0;
+    const increment = target / (duration / 16);
+    
+    const updateCounter = () => {
+      start += increment;
+      if (start < target) {
+        element.textContent = Math.floor(start).toString();
+        requestAnimationFrame(updateCounter);
+      } else {
+        element.textContent = target.toString();
+      }
+    };
+    
+    updateCounter();
+  }
+  
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const card = entry.target as HTMLElement;
+          const metricValue = card.querySelector('.metric-number') as HTMLElement;
+          const target = parseInt(card.getAttribute('data-target') || '0', 10);
+          
+          if (metricValue && !metricValue.classList.contains('animated')) {
+            metricValue.classList.add('animated');
+            animateCounter(metricValue, target);
+          }
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+  
+  document.querySelectorAll('.metric-card').forEach((card) => {
+    observer.observe(card);
+  });
+</script>
+
+<style>
+  .metrics-section {
+    padding: var(--section-padding-y) 0;
+  }
+  
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-xl);
+  }
+  
+  .metric-card {
+    text-align: center;
+    padding: 0;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-base), border-color var(--transition-base);
+  }
+  
+  .metric-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary-light);
+  }
+  
+  .metric-card-image-wrap {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+  
+  .metric-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--transition-slow);
+  }
+  
+  .metric-card:hover .metric-card-image {
+    transform: scale(1.03);
+  }
+  
+  .metric-value {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px;
+    padding: var(--spacing-lg) var(--spacing-xl) 0;
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .metric-number {
+    font-size: var(--font-size-5xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    line-height: 1;
+  }
+  
+  .metric-suffix {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+  }
+  
+  .metric-label {
+    font-size: var(--font-size-base);
+    color: var(--color-text-light);
+    margin: 0;
+    padding: 0 var(--spacing-xl) var(--spacing-xl);
+    font-weight: var(--font-weight-medium);
+  }
+  
+  @media (max-width: 768px) {
+    .metrics-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spacing-lg);
+    }
+    
+    .metric-number {
+      font-size: var(--font-size-4xl);
+    }
+    
+    .metric-suffix {
+      font-size: var(--font-size-2xl);
+    }
+  }
+</style>

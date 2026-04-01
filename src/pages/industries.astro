@@ -1,0 +1,97 @@
+---
+export const prerender = false;
+import PageLayout from '../layouts/PageLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import fallbackIndustries from '../data/industries.json';
+import CTASection from '../components/CTASection.astro';
+import { generateBreadcrumbSchema } from '../utils/schema';
+const industriesData = fallbackIndustries;
+
+const seo = {
+  title: 'Industries We Serve - IT Consultancy | Hire Ritz',
+  description: 'Industry-focused technology and digital solutions for IT, Healthcare, BFSI, Retail, Manufacturing, and more. Deep domain expertise meets technical excellence.',
+  keywords: 'IT consultancy industries, healthcare technology, BFSI digital, retail technology, manufacturing IT',
+  canonical: '/industries',
+};
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: 'https://hireritz.com/' },
+  { name: 'Industries', url: 'https://hireritz.com/industries' },
+]);
+
+const whyIndustryMattersItems = [
+  { title: 'Domain knowledge', desc: 'We understand your workflows, compliance requirements, and competitive landscape so solutions are practical from day one.', image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80', imageAlt: 'Domain knowledge' },
+  { title: 'Proven patterns', desc: 'We reuse proven technology patterns and best practices from similar engagements to reduce risk and accelerate delivery.', image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=80', imageAlt: 'Proven patterns' },
+  { title: 'Change and adoption', desc: 'We focus on adoption and change so your people and processes get the full benefit of new technology.', image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80', imageAlt: 'Change and adoption' },
+  { title: 'Long-term partnership', desc: 'We support you beyond go-live with ongoing optimization, training, and evolution as your industry and technology change.', image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&q=80', imageAlt: 'Long-term partnership' },
+];
+---
+
+<PageLayout
+  title={seo.title}
+  description={seo.description}
+  keywords={seo.keywords}
+  canonical={seo.canonical}
+  schema={[breadcrumbSchema]}
+>
+  <PageHero
+    title="Industries We Serve"
+    lead="We combine deep industry knowledge with technology expertise to deliver solutions that fit your sector—from regulatory and operations to customer experience."
+    image="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80"
+    imageAlt="Office and industry"
+  />
+
+  <section class="section section-light">
+    <div class="container">
+      <div class="section-header">
+        <h2>Industries We Serve</h2>
+        <p class="section-lead">Deep expertise across sectors. We tailor technology and talent solutions to your industry.</p>
+      </div>
+      <div class="services-grid">
+        {industriesData.map((industry) => (
+          <article class="service-card">
+            {industry.image && (
+              <div class="service-card-image-wrap">
+                <img src={industry.image} alt={industry.imageAlt ?? industry.name} class="service-card-image" width="600" height="340" loading="lazy" />
+              </div>
+            )}
+            <h3>{industry.name}</h3>
+            <p>{industry.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Why Industry Expertise Matters</h2>
+        <p class="section-lead">Every sector has unique processes, regulations, and technology needs. We tailor our approach accordingly.</p>
+      </div>
+      <div class="services-grid">
+        {whyIndustryMattersItems.map((item) => (
+          <div class="service-card">
+            <div class="service-card-image-wrap">
+              <img src={item.image} alt={item.imageAlt} class="service-card-image" width="600" height="340" loading="lazy" />
+            </div>
+            <h3>{item.title}</h3>
+            <p>{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-light">
+    <div class="container">
+      <CTASection
+        title="Ready to Transform Your Industry Solutions?"
+        description="Tell us about your industry and goals. We'll outline how we can help."
+        primaryCTA={{ text: 'Contact Us', href: '/contact' }}
+        secondaryCTA={{ text: 'Our Solutions', href: '/executive-search' }}
+      />
+    </div>
+  </section>
+</PageLayout>
+

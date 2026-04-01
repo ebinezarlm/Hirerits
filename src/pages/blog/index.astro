@@ -1,0 +1,165 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { getCollection } from 'astro:content';
+import { generateBreadcrumbSchema } from '../../utils/schema';
+
+const seo = {
+  title: 'Insights - Technology & Digital Transformation | Hire Ritz',
+  description: 'Insights on digital transformation, cloud, software development, cybersecurity, and technology strategy for enterprises.',
+  keywords: 'IT insights, digital transformation blog, technology trends, cloud, software development',
+  canonical: '/blog',
+};
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: 'https://hireritz.com/' },
+  { name: 'Insights', url: 'https://hireritz.com/blog' },
+]);
+
+const blogPosts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+---
+
+<PageLayout
+  title={seo.title}
+  description={seo.description}
+  keywords={seo.keywords}
+  canonical={seo.canonical}
+  schema={[breadcrumbSchema]}
+>
+  <PageHero
+    title="Insights"
+    lead="Perspectives on technology, digital transformation, and how enterprises can get more from their technology investments."
+    image="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80"
+    imageAlt="Collaboration and ideas"
+  />
+
+  <section class="section section-light">
+    <div class="container">
+      {blogPosts.length > 0 ? (
+        <div class="blog-grid">
+          {blogPosts.map((post) => (
+            <article class="blog-card">
+              {post.data.image && (
+                <img
+                  src={post.data.image}
+                  alt={post.data.title}
+                  class="blog-image"
+                  loading="lazy"
+                />
+              )}
+              <div class="blog-content">
+                <div class="blog-meta">
+                  <time datetime={post.data.pubDate.toISOString()}>
+                    {post.data.pubDate.toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
+                  </time>
+                  {post.data.tags.length > 0 && (
+                    <span class="blog-tags">
+                      {post.data.tags.map((tag) => (
+                        <span class="tag">{tag}</span>
+                      ))}
+                    </span>
+                  )}
+                </div>
+                <h2>
+                  <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+                </h2>
+                <p>{post.data.description}</p>
+                <a href={`/blog/${post.slug}`} class="blog-link">
+                  Read more →
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div class="blog-empty">
+          <p>No articles yet. Check back soon for insights and updates.</p>
+        </div>
+      )}
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--spacing-2xl);
+  }
+  .blog-card {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-base);
+  }
+  .blog-card:hover {
+    box-shadow: var(--shadow-md);
+  }
+  .blog-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  .blog-content {
+    padding: var(--spacing-xl);
+  }
+  .blog-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+  }
+  .blog-tags {
+    display: flex;
+    gap: var(--spacing-xs);
+    flex-wrap: wrap;
+  }
+  .tag {
+    padding: 2px var(--spacing-xs);
+    background: var(--color-bg-light);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+  }
+  .blog-content h2 {
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-xl);
+  }
+  .blog-content h2 a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+  .blog-content h2 a:hover {
+    color: var(--color-primary);
+  }
+  .blog-content p {
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-sm);
+  }
+  .blog-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: var(--font-weight-semibold);
+  }
+  .blog-link:hover {
+    text-decoration: underline;
+  }
+  .blog-empty {
+    text-align: center;
+    padding: var(--spacing-4xl) 0;
+    color: var(--color-text-light);
+  }
+  @media (max-width: 768px) {
+    .section { padding: var(--spacing-2xl) 0; }
+    .blog-grid { grid-template-columns: 1fr; }
+  }
+</style>

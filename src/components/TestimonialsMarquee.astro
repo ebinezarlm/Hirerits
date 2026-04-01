@@ -1,0 +1,448 @@
+---
+import testimonialsData from '../data/testimonials.json';
+
+interface Props {
+  limit?: number;
+}
+
+const { limit } = Astro.props;
+const testimonials = limit ? testimonialsData.slice(0, limit) : testimonialsData;
+
+function getCompanyInitials(company: string): string {
+  return company
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((word) => word[0]?.toUpperCase() ?? '')
+    .join('');
+}
+---
+
+<div class="testimonials-marquee-wrap">
+  <div class="testimonials-controls" aria-label="Testimonials marquee controls">
+    <button type="button" class="direction-btn active" data-direction="left" aria-pressed="true" aria-label="Scroll left">
+      <span aria-hidden="true">&#8592;</span>
+    </button>
+    <button type="button" class="direction-btn" data-direction="right" aria-pressed="false" aria-label="Scroll right">
+      <span aria-hidden="true">&#8594;</span>
+    </button>
+  </div>
+  <div class="testimonials-marquee" aria-label="Client testimonials carousel">
+    <div class="testimonials-track">
+      {testimonials.map((testimonial) => (
+        <article class="testimonial-card" itemscope itemtype="https://schema.org/Review">
+          {(testimonial as { image?: string }).image && (
+            <div class="testimonial-card-image-wrap">
+              <img
+                src={(testimonial as { image: string }).image}
+                alt={(testimonial as { imageAlt?: string }).imageAlt ?? testimonial.name}
+                class="testimonial-card-image"
+                width="600"
+                height="340"
+                loading="lazy"
+              />
+            </div>
+          )}
+          <div class="testimonial-card-body">
+            <div class="testimonial-rating" aria-label={`${testimonial.rating} out of 5 stars`}>
+              {'★'.repeat(testimonial.rating)}
+              {'☆'.repeat(5 - testimonial.rating)}
+            </div>
+            <blockquote class="testimonial-text" itemprop="reviewBody">
+              "{testimonial.testimonial}"
+            </blockquote>
+            <footer class="testimonial-author">
+              <div class="testimonial-info">
+                <div class="company-logo-wrap" aria-hidden="true">
+                  {(testimonial as { companyLogo?: string }).companyLogo ? (
+                    <img
+                      src={(testimonial as { companyLogo: string }).companyLogo}
+                      alt=""
+                      class="company-logo"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <span class="company-logo company-logo-fallback">
+                      {getCompanyInitials(testimonial.company)}
+                    </span>
+                  )}
+                </div>
+                <div class="person-meta">
+                  <cite class="testimonial-name" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <span itemprop="name">{testimonial.name}</span>
+                  </cite>
+                  <p class="testimonial-role">{testimonial.role}</p>
+                </div>
+              </div>
+            </footer>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</div>
+
+<script>
+  const testimonialRoot = document.querySelector('#testimonials-section');
+  const marquee =
+    testimonialRoot?.querySelector<HTMLElement>('.testimonials-marquee') ??
+    document.querySelector<HTMLElement>('.testimonials-marquee');
+  const directionButtons =
+    testimonialRoot?.querySelectorAll<HTMLButtonElement>('.direction-btn') ??
+    document.querySelectorAll<HTMLButtonElement>('.direction-btn');
+  const STORAGE_KEY = 'testimonials-marquee-direction';
+  let autoDirection: 'left' | 'right' = 'left';
+  let autoScrollTimer: number | undefined;
+
+  const setDirection = (direction: 'left' | 'right') => {
+    if (!marquee) return;
+    autoDirection = direction;
+    directionButtons.forEach((button) => {
+      const isActive = button.dataset.direction === direction;
+      button.classList.toggle('active', isActive);
+      button.setAttribute('aria-pressed', String(isActive));
+    });
+    window.localStorage.setItem(STORAGE_KEY, direction);
+  };
+
+  const savedDirection = window.localStorage.getItem(STORAGE_KEY);
+  const initialDirection = savedDirection === 'right' ? 'right' : 'left';
+  setDirection(initialDirection);
+
+  const scrollByCard = (direction: 'left' | 'right') => {
+    if (!marquee) return;
+    const card = marquee.querySelector<HTMLElement>('.testimonial-card');
+    if (!card) return;
+    const cardWidth = card.getBoundingClientRect().width;
+    const gap = 24;
+    const distance = cardWidth + gap;
+    marquee.scrollBy({
+      left: direction === 'right' ? distance : -distance,
+      behavior: 'smooth',
+    });
+  };
+
+  const restartAutoScroll = () => {
+    if (autoScrollTimer) window.clearInterval(autoScrollTimer);
+    autoScrollTimer = window.setInterval(() => {
+      scrollByCard(autoDirection);
+      if (!marquee) return;
+      const nearEnd = marquee.scrollLeft + marquee.clientWidth >= marquee.scrollWidth - 10;
+      const nearStart = marquee.scrollLeft <= 10;
+      if (autoDirection === 'right' && nearEnd) marquee.scrollTo({ left: 0, behavior: 'smooth' });
+      if (autoDirection === 'left' && nearStart) marquee.scrollTo({ left: marquee.scrollWidth, behavior: 'smooth' });
+    }, 3200);
+  };
+
+  directionButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const direction = button.dataset.direction === 'right' ? 'right' : 'left';
+      setDirection(direction);
+      scrollByCard(direction);
+      restartAutoScroll();
+    });
+  });
+
+  marquee?.addEventListener('mouseenter', () => {
+    if (autoScrollTimer) window.clearInterval(autoScrollTimer);
+  });
+  marquee?.addEventListener('mouseleave', restartAutoScroll);
+
+  restartAutoScroll();
+</script>
+
+<style>
+  .testimonials-marquee-wrap {
+    position: relative;
+  }
+
+  .testimonials-controls {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 3;
+    padding: 0 var(--spacing-sm);
+  }
+
+  .direction-btn {
+    width: 2.4rem;
+    height: 2.4rem;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: var(--radius-full);
+    background: rgba(15, 23, 42, 0.6);
+    color: #ffffff;
+    backdrop-filter: blur(6px);
+    font-size: 1rem;
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .direction-btn:hover {
+    background: rgba(15, 76, 129, 0.88);
+    border-color: rgba(255, 255, 255, 0.9);
+    transform: scale(1.04);
+  }
+
+  .direction-btn.active {
+    background: rgba(15, 76, 129, 0.92);
+    border-color: #ffffff;
+    box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.28);
+  }
+
+  .testimonials-marquee {
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+    max-width: min(1200px, 75vw);
+    margin: 0 auto;
+    min-height: 24rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .testimonials-marquee::-webkit-scrollbar {
+    display: none;
+  }
+
+  .testimonials-track {
+    display: flex;
+    align-items: stretch;
+    gap: var(--spacing-xl);
+    width: max-content;
+    padding: 0;
+  }
+
+  .testimonial-card {
+    flex: 0 0 calc((min(1200px, 75vw) - (var(--spacing-xl) * 2)) / 3);
+    scroll-snap-align: start;
+    background: var(--color-bg);
+    padding: 0;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 430px;
+    transition: box-shadow var(--transition-base), border-color var(--transition-base);
+  }
+
+  .testimonial-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary-light);
+  }
+
+  .testimonial-card-image-wrap {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .testimonial-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--transition-slow);
+  }
+
+  .testimonial-card:hover .testimonial-card-image {
+    transform: scale(1.03);
+  }
+
+  .testimonial-card-body {
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: var(--spacing-xs);
+  }
+
+  .testimonial-rating {
+    color: var(--color-accent);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-sm);
+    letter-spacing: 1px;
+  }
+
+  .testimonial-text {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    color: var(--color-text);
+    font-style: italic;
+    margin-bottom: var(--spacing-sm);
+    flex: 1;
+    quotes: '"' '"' "'" "'";
+    display: block;
+    overflow: visible;
+  }
+
+  .testimonial-text::before {
+    content: open-quote;
+    color: var(--color-primary);
+    font-size: var(--font-size-xl);
+    line-height: 0;
+    vertical-align: -0.4em;
+    margin-right: 4px;
+  }
+
+  .testimonial-text::after {
+    content: close-quote;
+    color: var(--color-primary);
+    font-size: var(--font-size-xl);
+    line-height: 0;
+    vertical-align: -0.4em;
+    margin-left: 4px;
+  }
+
+  .testimonial-author {
+    margin-top: auto;
+    padding-top: 0;
+    border-top: 1px solid var(--color-border);
+    padding-top: 10px;
+    min-height: 74px;
+    display: flex;
+    align-items: center;
+  }
+
+  .testimonial-info {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-areas:
+      'logo person';
+    column-gap: 12px;
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .company-logo-wrap {
+    grid-area: logo;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .person-meta {
+    grid-area: person;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    min-height: 56px;
+  }
+
+  .company-logo {
+    width: 56px;
+    height: 56px;
+    border-radius: 0;
+    object-fit: contain;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .company-logo-fallback {
+    font-size: 0.625rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary-dark);
+    background: linear-gradient(180deg, #eef6ff 0%, #dbeafe 100%);
+    letter-spacing: 0.03em;
+  }
+
+  .testimonial-name {
+    font-weight: 800;
+    color: var(--color-text);
+    font-style: normal;
+    display: block;
+    margin: 0;
+    font-size: 0.94rem;
+    line-height: 1.2;
+    min-height: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    width: 100%;
+  }
+
+  .testimonial-role {
+    font-size: 0.58rem;
+    color: var(--color-text-light);
+    margin: 0;
+    line-height: 1.2;
+    font-style: italic;
+    min-height: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .testimonials-controls {
+      padding: 0 var(--spacing-xs);
+    }
+
+    .direction-btn {
+      width: 2rem;
+      height: 2rem;
+      font-size: 0.9rem;
+    }
+
+    .testimonials-track {
+      gap: var(--spacing-md);
+      padding: 0;
+    }
+
+    .testimonial-card {
+      width: min(82vw, 300px);
+      min-width: 0;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .testimonials-marquee {
+      max-width: 84vw;
+    }
+
+    .testimonial-card {
+      width: clamp(260px, 30vw, 360px);
+    }
+  }
+
+  @media (max-width: 992px) {
+    .testimonials-marquee {
+      max-width: 90vw;
+    }
+
+    .testimonial-card {
+      width: clamp(260px, 42vw, 380px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .testimonials-marquee {
+      scroll-behavior: auto;
+    }
+  }
+</style>

@@ -1,0 +1,132 @@
+---
+import { generateSEOMeta } from '../utils/seo';
+import { generateOrganizationSchema, generateWebsiteSchema } from '../utils/schema';
+import CookieConsent from '../components/CookieConsent.astro';
+import Header from '../components/Header.astro';
+import '../styles/global.css';
+import '../styles/utilities.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: string;
+  keywords?: string;
+  noindex?: boolean;
+  schema?: object[];
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage,
+  ogType,
+  keywords,
+  noindex = false,
+  schema = [],
+} = Astro.props;
+
+const seo = generateSEOMeta({
+  title,
+  description,
+  canonical,
+  ogImage,
+  ogType,
+  keywords,
+  noindex,
+});
+
+const siteUrl = 'https://hireritz.com';
+const organizationSchema = generateOrganizationSchema({
+  name: 'Hire Ritz',
+  url: siteUrl,
+  logo: `${siteUrl}/images/logo.png`,
+  contactPoint: {
+    contactType: 'Customer Service',
+    email: 'contact@hireritz.com',
+    telephone: '+1-234-567-8900',
+  },
+  sameAs: [
+    'https://www.linkedin.com/company/hireritz',
+    'https://twitter.com/hireritz',
+  ],
+});
+
+const websiteSchema = generateWebsiteSchema(siteUrl);
+const allSchemas = [organizationSchema, websiteSchema, ...schema];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    
+    <!-- Primary Meta Tags -->
+    <title>{seo.title}</title>
+    <meta name="description" content={seo.description} />
+    {keywords && <meta name="keywords" content={keywords} />}
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={seo.canonical} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={seo.ogType} />
+    <meta property="og:url" content={seo.canonical} />
+    <meta property="og:title" content={seo.title} />
+    <meta property="og:description" content={seo.description} />
+    <meta property="og:image" content={seo.ogImage} />
+    <meta property="og:site_name" content="Hire Ritz" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={seo.canonical} />
+    <meta name="twitter:title" content={seo.title} />
+    <meta name="twitter:description" content={seo.description} />
+    <meta name="twitter:image" content={seo.ogImage} />
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+    
+    <!-- Theme colour (mobile browsers) -->
+    <meta name="theme-color" content="#0f766e" />
+    <meta name="msapplication-TileColor" content="#0f766e" />
+    
+    <!-- Favicon & app icons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/favicon.ico" />
+    
+    <!-- Preload Critical Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Schema.org JSON-LD -->
+    {allSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+  </head>
+  <body>
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
+    <Header />
+    <div class="layout-wrapper">
+      <slot />
+    </div>
+    
+    <CookieConsent />
+    
+    <!-- Analytics placeholder -->
+    <script>
+      // Google Analytics or privacy-first alternative
+      // Initialize in analytics.js
+    </script>
+    <script is:inline src="/scripts/analytics.js"></script>
+    <script is:inline src="/scripts/form-validation.js"></script>
+  </body>
+</html>

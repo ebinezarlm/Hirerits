@@ -1,0 +1,162 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  primaryCTA: {
+    text: string;
+    href: string;
+  };
+  secondaryCTA?: {
+    text: string;
+    href: string;
+  };
+  variant?: 'primary' | 'secondary' | 'accent';
+}
+
+const {
+  title,
+  description,
+  primaryCTA,
+  secondaryCTA,
+  variant = 'primary',
+} = Astro.props;
+
+const variantClass = `cta-${variant}`;
+---
+
+<section class={`cta-section ${variantClass}`}>
+  <div class="container">
+    <div class="cta-content">
+      <h2 class="cta-title">{title}</h2>
+      {description && <p class="cta-description">{description}</p>}
+      
+      <div class="cta-buttons">
+        <a
+          href={primaryCTA.href}
+          class={`btn btn-${variant === 'primary' ? 'primary' : variant === 'secondary' ? 'secondary' : 'accent'} btn-lg`}
+          data-analytics="cta-section-primary"
+        >
+          {primaryCTA.text}
+        </a>
+        {secondaryCTA && (
+          <a
+            href={secondaryCTA.href}
+            class="btn btn-secondary btn-lg"
+            data-analytics="cta-section-secondary"
+          >
+            {secondaryCTA.text}
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    padding: var(--section-padding-y) 0;
+    text-align: center;
+    border-radius: var(--radius-xl);
+  }
+  
+  .cta-primary {
+    background: var(--color-primary);
+    color: white;
+  }
+  
+  .cta-section .container {
+    padding: 0 var(--container-padding);
+  }
+  
+  .cta-secondary {
+    background: var(--color-bg-light);
+  }
+  
+  .cta-accent {
+    background: var(--color-accent);
+    color: white;
+  }
+  
+  .cta-content {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  .cta-title {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-md);
+    color: inherit;
+  }
+  
+  .cta-primary .cta-title,
+  .cta-accent .cta-title {
+    color: white;
+  }
+  
+  .cta-description {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-2xl);
+    color: inherit;
+    opacity: 0.9;
+  }
+  
+  .cta-primary .cta-description,
+  .cta-accent .cta-description {
+    color: white;
+  }
+  
+  /* Buttons on primary/accent background: ensure visibility */
+  .cta-primary .cta-buttons .btn-primary,
+  .cta-accent .cta-buttons .btn-primary {
+    background-color: white;
+    color: var(--color-primary);
+    border-color: white;
+  }
+  .cta-primary .cta-buttons .btn-primary:hover,
+  .cta-primary .cta-buttons .btn-primary:focus,
+  .cta-accent .cta-buttons .btn-primary:hover,
+  .cta-accent .cta-buttons .btn-primary:focus {
+    background-color: var(--color-bg-light);
+    color: var(--color-primary-dark);
+    border-color: var(--color-bg-light);
+  }
+  .cta-primary .cta-buttons .btn-secondary,
+  .cta-accent .cta-buttons .btn-secondary {
+    background-color: white;
+    color: var(--color-primary);
+    border-color: white;
+  }
+  .cta-primary .cta-buttons .btn-secondary:hover,
+  .cta-primary .cta-buttons .btn-secondary:focus,
+  .cta-accent .cta-buttons .btn-secondary:hover,
+  .cta-accent .cta-buttons .btn-secondary:focus {
+    background-color: var(--color-bg-light);
+    color: var(--color-primary-dark);
+    border-color: var(--color-bg-light);
+  }
+  
+  .cta-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  @media (max-width: 768px) {
+    .cta-section {
+      padding: var(--section-padding-y-mobile) 0;
+    }
+    
+    .cta-title {
+      font-size: var(--font-size-2xl);
+    }
+    
+    .cta-buttons {
+      flex-direction: column;
+    }
+    
+    .cta-buttons .btn {
+      width: 100%;
+    }
+  }
+</style>

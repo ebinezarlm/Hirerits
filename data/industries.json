@@ -1,0 +1,66 @@
+[
+  {
+    "id": "it",
+    "name": "Information Technology",
+    "description": "End-to-end IT talent solutions from software engineers to CTOs",
+    "icon": "💻",
+    "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&q=80",
+    "imageAlt": "Information Technology"
+  },
+  {
+    "id": "non-it",
+    "name": "Non-IT",
+    "description": "Diverse talent across operations, sales, marketing, and support",
+    "icon": "📊",
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80",
+    "imageAlt": "Non-IT services"
+  },
+  {
+    "id": "healthcare",
+    "name": "Healthcare",
+    "description": "Medical professionals, administrators, and healthcare leadership",
+    "icon": "🏥",
+    "image": "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&q=80",
+    "imageAlt": "Healthcare"
+  },
+  {
+    "id": "pharma",
+    "name": "Pharmaceuticals",
+    "description": "R&D, regulatory, clinical, and commercial pharma talent",
+    "icon": "💊",
+    "image": "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=600&q=80",
+    "imageAlt": "Pharmaceuticals"
+  },
+  {
+    "id": "bfsi",
+    "name": "Banking, Financial Services & Insurance",
+    "description": "Finance professionals, analysts, and executive leadership",
+    "icon": "🏦",
+    "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80",
+    "imageAlt": "Banking and Financial Services"
+  },
+  {
+    "id": "retail",
+    "name": "Retail & E-commerce",
+    "description": "Retail operations, supply chain, and digital commerce experts",
+    "icon": "🛒",
+    "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80",
+    "imageAlt": "Retail and E-commerce"
+  },
+  {
+    "id": "manufacturing",
+    "name": "Manufacturing",
+    "description": "Engineering, operations, and manufacturing leadership",
+    "icon": "🏭",
+    "image": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80",
+    "imageAlt": "Manufacturing"
+  },
+  {
+    "id": "telecom",
+    "name": "Telecommunications",
+    "description": "Network engineers, telecom executives, and technology specialists",
+    "icon": "📡",
+    "image": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80",
+    "imageAlt": "Telecommunications"
+  }
+]

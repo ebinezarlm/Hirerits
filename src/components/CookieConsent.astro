@@ -1,0 +1,112 @@
+---
+// Cookie consent component for GDPR compliance
+---
+
+<div class="cookie-consent" id="cookie-consent" role="dialog" aria-label="Cookie consent" aria-live="polite">
+  <div class="cookie-content">
+    <div class="cookie-text">
+      <h3>Cookie Consent</h3>
+      <p>
+        We use cookies to enhance your browsing experience, analyze site traffic, 
+        and personalize content. By clicking "Accept", you consent to our use of cookies. 
+        <a href="/privacy-policy">Learn more</a>
+      </p>
+    </div>
+    <div class="cookie-actions">
+      <button class="btn btn-secondary" id="cookie-decline">Decline</button>
+      <button class="btn btn-primary" id="cookie-accept">Accept</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const cookieConsent = document.getElementById('cookie-consent');
+  const acceptButton = document.getElementById('cookie-accept');
+  const declineButton = document.getElementById('cookie-decline');
+  
+  // Check if consent has been given
+  const consent = localStorage.getItem('cookie-consent');
+  if (consent) {
+    cookieConsent?.classList.add('hidden');
+  }
+  
+  function setConsent(value: string) {
+    localStorage.setItem('cookie-consent', value);
+    cookieConsent?.classList.add('hidden');
+    
+    // Initialize analytics if accepted
+    if (value === 'accepted') {
+      // Analytics will be initialized by analytics.js
+      window.dispatchEvent(new Event('cookie-consent-accepted'));
+    }
+  }
+  
+  acceptButton?.addEventListener('click', () => setConsent('accepted'));
+  declineButton?.addEventListener('click', () => setConsent('declined'));
+</script>
+
+<style>
+  .cookie-consent {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+    box-shadow: var(--shadow-lg);
+    z-index: var(--z-modal);
+    padding: var(--spacing-lg);
+    transform: translateY(0);
+    transition: transform var(--transition-base);
+  }
+  
+  .cookie-consent.hidden {
+    transform: translateY(100%);
+  }
+  
+  .cookie-content {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-xl);
+  }
+  
+  .cookie-text h3 {
+    margin-bottom: var(--spacing-xs);
+    font-size: var(--font-size-lg);
+  }
+  
+  .cookie-text p {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+  }
+  
+  .cookie-text a {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+  
+  .cookie-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-shrink: 0;
+  }
+  
+  @media (max-width: 768px) {
+    .cookie-content {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    .cookie-actions {
+      width: 100%;
+    }
+    
+    .cookie-actions .btn {
+      flex: 1;
+    }
+  }
+</style>

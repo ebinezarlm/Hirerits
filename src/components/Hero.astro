@@ -1,0 +1,274 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  primaryCTA?: {
+    text: string;
+    href: string;
+  };
+  secondaryCTA?: {
+    text: string;
+    href: string;
+  };
+  tertiaryCTA?: {
+    text: string;
+    href: string;
+  };
+  backgroundImage?: string;
+}
+
+const {
+  title,
+  subtitle,
+  primaryCTA,
+  secondaryCTA,
+  tertiaryCTA,
+  backgroundImage,
+} = Astro.props;
+---
+
+<section class="hero" id="hero">
+  <div class="hero-background">
+    {backgroundImage && (
+      <img
+        src={backgroundImage}
+        alt=""
+        loading="eager"
+        class="hero-image"
+      />
+    )}
+    <div class="hero-overlay"></div>
+  </div>
+  
+  <div class="container">
+    <div class="hero-content">
+      <h1 class="hero-title">{title}</h1>
+      {subtitle && <p class="hero-subtitle">{subtitle}</p>}
+      
+      <div class="hero-ctas">
+        {primaryCTA && (
+          <a href={primaryCTA.href} class="btn btn-primary btn-lg" data-analytics="cta-primary">
+            {primaryCTA.text}
+          </a>
+        )}
+        {secondaryCTA && (
+          <a href={secondaryCTA.href} class="btn btn-secondary btn-lg" data-analytics="cta-secondary">
+            {secondaryCTA.text}
+          </a>
+        )}
+        {tertiaryCTA && (
+          <a href={tertiaryCTA.href} class="btn btn-accent btn-lg" data-analytics="cta-tertiary">
+            {tertiaryCTA.text}
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: white;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background:
+      radial-gradient(circle at 12% 14%, rgba(14, 165, 233, 0.35), transparent 26%),
+      radial-gradient(circle at 88% 24%, rgba(56, 189, 248, 0.26), transparent 30%),
+      linear-gradient(135deg, #020617 0%, #0f4c81 48%, #102a43 100%);
+  }
+  
+  .hero:has(.hero-image) .hero-overlay {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(13, 148, 136, 0.75) 50%, rgba(19, 78, 74, 0.85) 100%);
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 1120px;
+    width: 100%;
+    margin: 0 auto;
+    padding: var(--spacing-5xl) var(--spacing-2xl);
+    box-sizing: border-box;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5vw, 4.25rem);
+    font-weight: 800;
+    color: #ffffff !important;
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    max-width: 100%;
+    padding: 0 var(--spacing-lg);
+    text-align: center;
+    text-shadow: 0 12px 32px rgba(2, 6, 23, 0.45);
+  }
+  
+  .hero-subtitle {
+    font-size: clamp(1.125rem, 2vw, 1.35rem);
+    color: #ffffff !important;
+    margin-bottom: var(--spacing-2xl);
+    line-height: 1.6;
+    max-width: 760px;
+    padding: 0 var(--spacing-lg);
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: var(--font-weight-normal);
+    text-align: center;
+    text-shadow: 0 8px 24px rgba(2, 6, 23, 0.35);
+  }
+  
+  .hero-ctas {
+    display: flex;
+    gap: var(--spacing-lg);
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 var(--spacing-lg);
+  }
+  
+  .hero-ctas .btn {
+    font-size: 1rem;
+    padding: var(--spacing-md) var(--spacing-2xl);
+    font-weight: var(--font-weight-semibold);
+    border-radius: var(--radius-full);
+    min-height: 52px;
+  }
+  
+  .hero-ctas .btn-primary {
+    background: white;
+    color: var(--color-secondary);
+  }
+  .hero-ctas .btn-primary:hover {
+    background: rgba(255,255,255,0.95);
+    color: var(--color-secondary);
+  }
+  .hero-ctas .btn-secondary {
+    border-color: rgba(255,255,255,0.8);
+    color: white;
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .hero-ctas .btn-secondary:hover {
+    background: rgba(255,255,255,0.15);
+    color: white;
+  }
+  
+  @media (max-width: 1024px) {
+    .hero {
+      min-height: 750px;
+    }
+    
+    .hero-content {
+      padding: var(--spacing-4xl) var(--spacing-2xl);
+    }
+    
+    .hero-title {
+      font-size: 4.5rem;
+      padding: 0 var(--spacing-lg);
+      letter-spacing: 2px;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.75rem;
+      padding: 0 var(--spacing-lg);
+    }
+    
+    .hero-ctas {
+      gap: var(--spacing-xl);
+    }
+    
+    .hero-ctas .btn {
+      font-size: 1.125rem;
+      padding: var(--spacing-lg) var(--spacing-2xl);
+      min-height: 56px;
+      min-width: 200px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero {
+      min-height: 600px;
+    }
+    
+    .hero-content {
+      padding: var(--spacing-3xl) var(--spacing-lg);
+    }
+    
+    .hero-title {
+      font-size: 2.5rem;
+      padding: 0 var(--spacing-md);
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .hero-subtitle {
+      font-size: 1.25rem;
+      padding: 0 var(--spacing-md);
+      margin-bottom: var(--spacing-3xl);
+    }
+    
+    .hero-ctas {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--spacing-md);
+    }
+    
+    .hero-ctas .btn {
+      width: 100%;
+      font-size: 1rem;
+      padding: var(--spacing-md) var(--spacing-xl);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.125rem;
+    }
+  }
+</style>

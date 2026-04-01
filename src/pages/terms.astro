@@ -1,0 +1,172 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { generateBreadcrumbSchema } from '../utils/schema';
+
+const seo = {
+  title: 'Terms & Conditions - Hire Ritz',
+  description: 'Terms and conditions of use for Hire Ritz website and services.',
+  keywords: 'terms and conditions, terms of service',
+  canonical: '/terms',
+};
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: 'https://hireritz.com/' },
+  { name: 'Terms & Conditions', url: 'https://hireritz.com/terms' },
+]);
+---
+
+<PageLayout
+  title={seo.title}
+  description={seo.description}
+  keywords={seo.keywords}
+  canonical={seo.canonical}
+  schema={[breadcrumbSchema]}
+>
+  <section class="section section-light">
+    <div class="container">
+      <h1>Terms & Conditions</h1>
+      <p class="page-subtitle">
+        Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+      </p>
+      <div class="content-main max-w-4xl mx-auto">
+          <h2>Agreement to Terms</h2>
+          <p>
+            By accessing or using the Hire Ritz website and services, you agree to be bound 
+            by these Terms and Conditions. If you do not agree to these terms, please do not 
+            use our services.
+          </p>
+          
+          <h2>Use of Services</h2>
+          <h3>Eligibility</h3>
+          <p>
+            You must be at least 18 years old to use our services. By using our services, 
+            you represent and warrant that you meet this age requirement.
+          </p>
+          
+          <h3>Acceptable Use</h3>
+          <p>You agree not to:</p>
+          <ul>
+            <li>Use our services for any illegal or unauthorized purpose</li>
+            <li>Violate any applicable laws or regulations</li>
+            <li>Infringe upon the rights of others</li>
+            <li>Transmit any harmful code or malware</li>
+            <li>Interfere with or disrupt our services</li>
+            <li>Impersonate any person or entity</li>
+            <li>Collect or harvest information from our website without permission</li>
+          </ul>
+          
+          <h2>User Accounts</h2>
+          <p>
+            If you create an account with us, you are responsible for maintaining the 
+            confidentiality of your account credentials and for all activities that occur 
+            under your account.
+          </p>
+          
+          <h2>Intellectual Property</h2>
+          <p>
+            All content on this website, including text, graphics, logos, images, and 
+            software, is the property of Hire Ritz or its licensors and is protected by 
+            copyright and other intellectual property laws.
+          </p>
+          
+          <h2>User Content</h2>
+          <p>
+            By submitting content (such as resumes, job applications, or messages) through 
+            our services, you grant us a non-exclusive, worldwide, royalty-free license to use, 
+            reproduce, and distribute such content for the purpose of providing our services.
+          </p>
+          
+          <h2>Recruitment Services</h2>
+          <h3>For Employers</h3>
+          <p>
+            Our recruitment services are provided on a best-efforts basis. We do not guarantee 
+            that we will find suitable candidates for every position, and we are not responsible 
+            for the performance or conduct of candidates we place.
+          </p>
+          
+          <h3>For Job Seekers</h3>
+          <p>
+            We facilitate connections between job seekers and employers. We do not guarantee 
+            job placement, and we are not responsible for employment decisions made by employers.
+          </p>
+          
+          <h2>Limitation of Liability</h2>
+          <p>
+            To the maximum extent permitted by law, Hire Ritz shall not be liable for any 
+            indirect, incidental, special, consequential, or punitive damages, or any loss of 
+            profits or revenues, whether incurred directly or indirectly.
+          </p>
+          
+          <h2>Indemnification</h2>
+          <p>
+            You agree to indemnify and hold harmless Hire Ritz, its officers, directors, 
+            employees, and agents from any claims, damages, losses, liabilities, and expenses 
+            arising out of your use of our services or violation of these terms.
+          </p>
+          
+          <h2>Termination</h2>
+          <p>
+            We reserve the right to terminate or suspend your access to our services at any 
+            time, with or without cause or notice, for any reason, including violation of these terms.
+          </p>
+          
+          <h2>Changes to Terms</h2>
+          <p>
+            We reserve the right to modify these Terms and Conditions at any time. We will 
+            notify you of any changes by posting the new terms on this page and updating the 
+            "Last updated" date.
+          </p>
+          
+          <h2>Governing Law</h2>
+          <p>
+            These Terms and Conditions shall be governed by and construed in accordance with
+            the laws of the State of Delaware, United States, without regard to its conflict of law provisions.
+          </p>
+          
+          <h2>Contact Us</h2>
+          <p>
+            If you have questions about these Terms and Conditions, please contact us at:
+          </p>
+          <p>
+            <strong>Email:</strong> <a href="mailto:legal@hireritz.com">legal@hireritz.com</a><br />
+            <strong>Address:</strong> See our <a href="/contact">Contact</a> page for office details.
+          </p>
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .page-subtitle {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-light);
+    max-width: 800px;
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-2xl);
+  }
+  
+  .content-main h2 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .content-main h3 {
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .content-main ul {
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .content-main li {
+    margin-bottom: var(--spacing-sm);
+    line-height: var(--line-height-relaxed);
+  }
+  
+  @media (max-width: 768px) {
+    .page-subtitle {
+      font-size: var(--font-size-lg);
+    }
+  }
+</style>

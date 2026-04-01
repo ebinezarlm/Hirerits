@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Sarah Chen",
+    "role": "Chief People Officer",
+    "company": "TechCorp Global",
+    "testimonial": "Hire Ritz transformed our executive hiring process. Their consultative approach and global reach helped us find the perfect C-suite candidates across three continents.",
+    "rating": 5,
+    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80",
+    "imageAlt": "Sarah Chen"
+  },
+  {
+    "id": 2,
+    "name": "Michael Rodriguez",
+    "role": "VP of Talent Acquisition",
+    "company": "Enterprise Solutions Inc.",
+    "testimonial": "We needed to scale our engineering team by 200+ in 6 months. Hire Ritz's volume hiring solution delivered exceptional candidates on time, every time.",
+    "rating": 5,
+    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=80",
+    "imageAlt": "Michael Rodriguez"
+  },
+  {
+    "id": 3,
+    "name": "Priya Sharma",
+    "role": "HR Director",
+    "company": "Healthcare Innovations",
+    "testimonial": "The team's deep industry knowledge in healthcare and pharma made all the difference. They understand our unique requirements and deliver consistently.",
+    "rating": 5,
+    "image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&q=80",
+    "imageAlt": "Priya Sharma"
+  }
+]

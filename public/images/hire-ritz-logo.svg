@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Hire Ritz logo">
+  <defs>
+    <linearGradient id="hrGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f4c81" />
+      <stop offset="100%" stop-color="#0b365c" />
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="144" height="144" rx="34" fill="url(#hrGradient)" />
+  <path d="M44 45h20v26h32V45h20v70H96V89H64v26H44z" fill="#fff" />
+  <circle cx="118" cy="118" r="12" fill="#0ea5e9" />
+</svg>
