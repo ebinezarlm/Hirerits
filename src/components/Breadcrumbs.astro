@@ -1,0 +1,137 @@
+---
+export interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+  /** Use on dark backgrounds (e.g. blog article header). */
+  variant?: 'default' | 'inverse';
+}
+
+const { items, variant = 'default' } = Astro.props;
+---
+
+{
+  items.length > 0 && (
+    <nav
+      class:list={['breadcrumb-nav', variant === 'inverse' && 'breadcrumb-nav--inverse']}
+      aria-label="Breadcrumb"
+    >
+      <ol class="breadcrumb-list">
+        {items.map((item) => (
+          <li class="breadcrumb-item">
+            {item.href ? (
+              <a href={item.href}>{item.label}</a>
+            ) : (
+              <span class="breadcrumb-current" aria-current="page">{item.label}</span>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )
+}
+
+<style>
+  .breadcrumb-nav {
+    margin-bottom: var(--spacing-md);
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .breadcrumb-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: var(--font-size-sm);
+    line-height: 1.45;
+  }
+
+  .breadcrumb-item {
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .breadcrumb-item + .breadcrumb-item::before {
+    content: '/';
+    display: inline-block;
+    margin-right: 0.35rem;
+    color: var(--color-text-lighter);
+    font-weight: var(--font-weight-normal);
+    flex-shrink: 0;
+  }
+
+  .breadcrumb-nav--inverse .breadcrumb-item + .breadcrumb-item::before {
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  .breadcrumb-item a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    padding: 0.35rem 0.15rem;
+    margin: -0.35rem -0.15rem;
+    border-radius: var(--radius-sm);
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .breadcrumb-item a:hover,
+  .breadcrumb-item a:focus-visible {
+    text-decoration: underline;
+    color: var(--color-primary-dark);
+    outline: none;
+  }
+
+  .breadcrumb-item a:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .breadcrumb-current {
+    color: var(--color-text);
+    font-weight: var(--font-weight-semibold);
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    padding: 0.25rem 0;
+    display: inline;
+  }
+
+  .breadcrumb-nav--inverse .breadcrumb-item a {
+    color: rgba(255, 255, 255, 0.95);
+  }
+
+  .breadcrumb-nav--inverse .breadcrumb-item a:hover,
+  .breadcrumb-nav--inverse .breadcrumb-item a:focus-visible {
+    color: #ffffff;
+  }
+
+  .breadcrumb-nav--inverse .breadcrumb-item a:focus-visible {
+    outline-color: #ffffff;
+  }
+
+  .breadcrumb-nav--inverse .breadcrumb-current {
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  @media (max-width: 480px) {
+    .breadcrumb-list {
+      font-size: var(--font-size-xs);
+      gap: 0.25rem 0.15rem;
+    }
+
+    .breadcrumb-item + .breadcrumb-item::before {
+      margin-right: 0.25rem;
+    }
+  }
+</style>

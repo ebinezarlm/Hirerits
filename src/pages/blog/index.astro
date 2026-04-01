@@ -33,6 +33,7 @@ const blogPosts = (await getCollection('blog')).sort(
     lead="Perspectives on technology, digital transformation, and how enterprises can get more from their technology investments."
     image="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80"
     imageAlt="Collaboration and ideas"
+    breadcrumbItems={[{ label: 'Home', href: '/' }, { label: 'Insights' }]}
   />
 
   <section class="section section-light">

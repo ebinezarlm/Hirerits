@@ -1,5 +1,6 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { generateBreadcrumbSchema } from '../utils/schema';
 
 const seo = {
@@ -24,6 +25,7 @@ const breadcrumbSchema = generateBreadcrumbSchema([
 >
   <section class="section section-light">
     <div class="container">
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Privacy Policy' }]} />
       <h1>Privacy Policy</h1>
       <p class="page-subtitle">
         Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}

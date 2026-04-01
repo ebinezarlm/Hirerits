@@ -480,7 +480,8 @@ button:focus-visible {
   }
 
   .container {
-    padding: 0 var(--container-padding);
+    padding-left: max(var(--container-padding), env(safe-area-inset-left));
+    padding-right: max(var(--container-padding), env(safe-area-inset-right));
   }
 
   .section-header {

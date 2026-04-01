@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { getCollection } from 'astro:content';
 import { generateArticleSchema, generateBreadcrumbSchema } from '../../utils/schema';
 
@@ -53,9 +54,14 @@ const breadcrumbSchema = generateBreadcrumbSchema([
     <article class="blog-post">
       <header class="blog-header">
         <div class="container">
-          <nav aria-label="Breadcrumb" class="breadcrumb">
-            <a href="/">Home</a> / <a href="/blog">Insights</a> / <span>{post.data.title}</span>
-          </nav>
+          <Breadcrumbs
+            variant="inverse"
+            items={[
+              { label: 'Home', href: '/' },
+              { label: 'Insights', href: '/blog' },
+              { label: post.data.title },
+            ]}
+          />
           
           <h1>{post.data.title}</h1>
           
@@ -110,21 +116,6 @@ const breadcrumbSchema = generateBreadcrumbSchema([
     color: white;
     font-size: var(--font-size-5xl);
     margin-bottom: var(--spacing-lg);
-  }
-  
-  .breadcrumb {
-    margin-bottom: var(--spacing-lg);
-    font-size: var(--font-size-sm);
-    color: rgba(255, 255, 255, 0.8);
-  }
-  
-  .breadcrumb a {
-    color: rgba(255, 255, 255, 0.9);
-    text-decoration: none;
-  }
-  
-  .breadcrumb a:hover {
-    text-decoration: underline;
   }
   
   .blog-meta {

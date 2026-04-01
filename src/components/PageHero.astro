@@ -1,16 +1,21 @@
 ---
+import Breadcrumbs from './Breadcrumbs.astro';
+
 interface Props {
   title: string;
   lead?: string;
   image?: string;
   imageAlt?: string;
+  /** Visible trail; last item is usually current page (omit href). */
+  breadcrumbItems?: Array<{ label: string; href?: string }>;
 }
 
-const { title, lead, image, imageAlt = '' } = Astro.props;
+const { title, lead, image, imageAlt = '', breadcrumbItems } = Astro.props;
 ---
 
 <section class="page-hero-wrap">
   <div class="container">
+    {breadcrumbItems && breadcrumbItems.length > 0 && <Breadcrumbs items={breadcrumbItems} />}
     <div class="page-hero-inner">
       {image && (
         <div class="page-hero-image-wrap">
@@ -65,6 +70,10 @@ const { title, lead, image, imageAlt = '' } = Astro.props;
   @media (max-width: 767px) {
     .page-hero-image-wrap {
       max-height: 220px;
+    }
+
+    .page-hero-inner {
+      gap: var(--spacing-xl);
     }
   }
 </style>
